@@ -1,4 +1,6 @@
-package juego.escenas;
+package juego.escenas.dificultadNiveles;
+
+import juego.escenas.Nivel;
 
 /**
  * @author Dilan Rojas
@@ -7,8 +9,8 @@ package juego.escenas;
  * @description description
  */
 
-public class EscenaNivelMedio extends EscenaNivel {
-	public EscenaNivelMedio(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
+public class NivelMedio extends Nivel {
+	public NivelMedio(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		super(8.0, enemigosPorOleada, enemigosParaGanar);
 	}
 

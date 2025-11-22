@@ -1,6 +1,6 @@
 package juego.escenas.niveles;
 
-import juego.escenas.EscenaNivelFacil;
+import juego.escenas.dificultadNiveles.NivelFacil;
 
 
 /**
@@ -10,7 +10,7 @@ import juego.escenas.EscenaNivelFacil;
  * @description Nivel 1
  */
 
-public class Nivel1 extends EscenaNivelFacil {
+public class Nivel1 extends NivelFacil {
   public Nivel1() {
     super(10, 10);
   }

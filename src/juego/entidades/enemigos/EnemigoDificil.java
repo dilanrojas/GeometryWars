@@ -1,6 +1,8 @@
-package juego.entidades;
+package juego.entidades.enemigos;
 
 import juego.Assets;
+import juego.entidades.Enemigo;
+import juego.entidades.Nave;
 import motor.util.Vector2D;
 
 /**

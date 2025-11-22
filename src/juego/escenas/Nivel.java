@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 import juego.Assets;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
-import juego.entidades.EnemigoFacil;
-import juego.entidades.EnemigoMedio;
 import juego.entidades.Nave;
+import juego.entidades.enemigos.EnemigoFacil;
+import juego.entidades.enemigos.EnemigoMedio;
 import motor.Scene;
 import motor.entidades.ListaEntidades;
 import motor.input.Key;
@@ -23,7 +23,7 @@ import motor.util.Vector2D;
  * @description Plantilla para los niveles
  */
 
-public abstract class EscenaNivel extends Scene {
+public abstract class Nivel extends Scene {
 	private Nave jugador;
 	private ListaEntidades balas;
 	private ListaEntidades listaEnemigos;
@@ -38,7 +38,7 @@ public abstract class EscenaNivel extends Scene {
 
 	private double contador = 0;
 
-	public EscenaNivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
+	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
 		this.administrador = new AdministradorDeColisiones();
 		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
@@ -118,7 +118,11 @@ public abstract class EscenaNivel extends Scene {
 		}
 	}
 
-	private Vector2D generarSpawnAlejado(Vector2D centro, double min, double max) {
+	private Vector2D generarSpawnAlejado(
+		Vector2D centro,
+		double min,
+		double max
+	) {
 		Random random = new Random();
 		double angulo = random.nextDouble() * Math.PI * 2;
 		double distancia = min + (random.nextDouble() * (max - min));
@@ -128,12 +132,12 @@ public abstract class EscenaNivel extends Scene {
 	}
 
 	protected void oleada (
-			double porcentajeFaciles,
-			double porcentajeMedios,
-			double porcentajeDificiles,
-			int distanciaMin,
-			int distanciaMax
-		) {
+		double porcentajeFaciles,
+		double porcentajeMedios,
+		double porcentajeDificiles,
+		int distanciaMin,
+		int distanciaMax
+	) {
 		int cantidadFaciles = (int) (enemigosPorOleada * porcentajeFaciles);
 		int cantidadMedios  = enemigosPorOleada - cantidadFaciles;
 
