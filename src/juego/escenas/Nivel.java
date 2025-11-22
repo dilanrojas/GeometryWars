@@ -2,13 +2,12 @@ package juego.escenas;
 
 import java.awt.Graphics;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
-
 import juego.Assets;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
 import juego.entidades.Nave;
+import juego.entidades.enemigos.EnemigoDificil;
 import juego.entidades.enemigos.EnemigoFacil;
 import juego.entidades.enemigos.EnemigoMedio;
 import motor.Scene;
@@ -52,13 +51,41 @@ public abstract class Nivel extends Scene {
 
 	@Override
 	public final void actualizar() {
-		if (jugador != null)
-			jugador.actualizar();
+		if (jugador != null) jugador.actualizar();
+		disparar();
 
 		balas.actualizar();
-		disparar();
 		listaEnemigos.actualizar();
 
+		controlarOleadas();
+		controlarEnemigos();
+		destruir();
+	}
+
+	@Override
+	public void dibujar(Graphics g) {
+		if (jugador != null) jugador.dibujar(g);
+		if (balas != null) balas.dibujar(g);
+		if (listaEnemigos != null) listaEnemigos.dibujar(g);
+	}
+
+	@Override
+	public void destruir() {
+		if (jugador != null && !jugador.estaViva()) jugador = null;
+		if (balas !=null) balas.destruir();
+		if (listaEnemigos != null) listaEnemigos.destruir();
+	}
+
+	// Disparos del jugador
+	private void disparar() {
+		if (jugador != null && jugador.quiereDisparar()) {
+			balas.add(jugador.disparar());
+			Assets.reproducirDisparo();
+		}
+	}
+	
+	// Generación de enemigos
+	private void controlarOleadas() {
 		contador += motor.GameLoop.deltaTimeSeconds;
 		if (primeraOrda && contador > tiempoOrdaInicial) {
 			generarEnemigos();
@@ -70,39 +97,12 @@ public abstract class Nivel extends Scene {
 			contador = 0;
 
 		}
-
-		controlarEnemigos();
-
-		destruir();
 	}
 
-	@Override
-	public void dibujar(Graphics g) {
-		balas.dibujar(g);
-		listaEnemigos.dibujar(g);
-		if (jugador != null)
-			jugador.dibujar(g);
-	}
-
-	@Override
-	public void destruir() {
-		if (jugador != null && !jugador.estaViva())
-			jugador = null;
-
-		balas.destruir();
-		listaEnemigos.destruir();
-	}
-
-	private void disparar() {
-		if (jugador != null && jugador.quiereDisparar()) {
-			balas.add(jugador.disparar());
-			Assets.reproducirDisparo();
-		}
-	}
-
+	// Colisiones
 	private void controlarEnemigos() {
+		// Balas --> Enemigos
 		if (administrador.detectarColisionesConBalas(listaEnemigos, balas) == 1) {
-
 			enemigosMuertos++;
 			Assets.reproducirExplosion();
 
@@ -112,12 +112,14 @@ public abstract class Nivel extends Scene {
 			}
 		}
 
+		// Jugador --> Enemigos
 		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
 			JOptionPane.showMessageDialog(null, "Perdiste");
 			destruir();
 		}
 	}
 
+	// Generar origen (spawn) de enemigos en un radio determinado
 	private Vector2D generarSpawnAlejado(
 		Vector2D centro,
 		double min,
@@ -131,15 +133,18 @@ public abstract class Nivel extends Scene {
 		return new Vector2D(x, y);
 	}
 
-	protected void oleada (
+	// Metodo oleada, modificado en las diferentes dificultades
+	protected void oleada(
 		double porcentajeFaciles,
 		double porcentajeMedios,
 		double porcentajeDificiles,
 		int distanciaMin,
-		int distanciaMax
+	    int distanciaMax
 	) {
-		int cantidadFaciles = (int) (enemigosPorOleada * porcentajeFaciles);
-		int cantidadMedios  = enemigosPorOleada - cantidadFaciles;
+		// Cálculo de cantidades por tipo
+		int cantidadFaciles  = (int) (enemigosPorOleada * porcentajeFaciles);
+		int cantidadMedios   = (int) (enemigosPorOleada * porcentajeMedios);
+		int cantidadDificiles = enemigosPorOleada - cantidadFaciles - cantidadMedios;
 
 		Vector2D posJugador = jugador.getTransform().getPosicion();
 
@@ -153,6 +158,12 @@ public abstract class Nivel extends Scene {
 		for (int i = 0; i < cantidadMedios; i++) {
 			Vector2D spawn = generarSpawnAlejado(posJugador, distanciaMin, distanciaMax);
 			listaEnemigos.add(new EnemigoMedio(spawn, jugador));
+		}
+
+		// === ENEMIGOS DIFÍCILES ===
+		for (int i = 0; i < cantidadDificiles; i++) {
+			Vector2D spawn = generarSpawnAlejado(posJugador, distanciaMin, distanciaMax);
+			listaEnemigos.add(new EnemigoDificil(spawn, jugador));
 		}
 	}
 

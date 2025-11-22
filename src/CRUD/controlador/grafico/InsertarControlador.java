@@ -73,8 +73,19 @@ public class InsertarControlador implements ActionListener {
 			vista.mostrarMsj("El nickname no debe contener espacios");
 			return false;
 		} else if (modelo.buscar(vista.getNickname()) != null) {
-			vista.mostrarMsj("El nickname ya se encuentra registrado");
-			return false;
+			Usuario coincidenciaNickname = null;
+			
+			try {
+				coincidenciaNickname = modelo.buscar(vista.getNickname())[0];
+				
+				if (coincidenciaNickname.getNickname().equals(vista.getNickname())) {
+					vista.mostrarMsj("El nickname ya se encuentra registrado");
+					return false;
+				}
+			} catch (Exception ex) {
+				
+			}
+			
 		}
 
 		// Comprobar contraseña

@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
-import juego.AppJuego;
 import vista.BienvenidaVista;
 import vista.IngresarJuegoVista;
+import vista.MenuJuegoVista;
 
 /**
  * @author AnaGonzalezC5F593
@@ -20,6 +20,9 @@ public class IngresarJuegoControlador implements ActionListener {
 	private IngresarJuegoVista vista;
 	private IUsuarioDAO modelo;
 	
+	private MenuJuegoVista menuJuegoVista;
+	private MenuJuegoControlador menuJuegoControlador;
+	
 	public IngresarJuegoControlador(IUsuarioDAO modelo, IngresarJuegoVista vista) {
 		this.vista = vista;
 		this.modelo = modelo;
@@ -30,9 +33,9 @@ public class IngresarJuegoControlador implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
+		Usuario usuarioIngresado = null;
 		
 		if (source == vista.getBtnIngresar()) {
-			Usuario usuarioIngresado = null;
 			try {
 				usuarioIngresado = modelo.buscar(vista.getNickname())[0];
 			} catch (Exception ex) {
@@ -45,7 +48,8 @@ public class IngresarJuegoControlador implements ActionListener {
 				return;
 			}
 			
-			AppJuego juego = new AppJuego();
+			menuJuegoVista = new MenuJuegoVista();
+			menuJuegoControlador = new MenuJuegoControlador(modelo, menuJuegoVista, usuarioIngresado);
 			vista.cerrar();
 		} else if (source == vista.getBtnCancelar()) {
 			volver();
@@ -58,6 +62,5 @@ public class IngresarJuegoControlador implements ActionListener {
 		BienvenidaVista bienvenidaVista = new BienvenidaVista();
 		BienvenidaControlador bienvenidaControlador = new BienvenidaControlador(modelo, bienvenidaVista);
 	}
-
 }
 

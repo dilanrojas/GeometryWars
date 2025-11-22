@@ -25,11 +25,12 @@ public class BienvenidaVista extends JFrame {
 	private JButton btnJugar;
 	private JButton btnSalir;
 	private JTextArea jtaRecords;
+	private JButton btnCrud;
 
 	public BienvenidaVista() {
 	        initComponents();
-	        setTitle("Bienvenida");
-	        setSize(500, 500);
+	        setTitle("Bienvenida | Geometry Wars");
+	        setSize(500, 600);
 	        setResizable(false);
 	        setLocationRelativeTo(null);
 	        getContentPane().setLayout(null);
@@ -62,18 +63,22 @@ public class BienvenidaVista extends JFrame {
 		getContentPane().add(btnJugar);
 
 		btnSalir = new JButton("Salir");
-		btnSalir.setBounds(157, 196, 177, 30);
+		btnSalir.setBounds(157, 237, 177, 30);
 		getContentPane().add(btnSalir);
 
 		lblRecords = new JLabel("Los mejores récords");
 		lblRecords.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblRecords.setBounds(171, 240, 150, 31);
+		lblRecords.setBounds(172, 292, 150, 31);
 		getContentPane().add(lblRecords);
 		
         jtaRecords = new JTextArea();
         jtaRecords.setEditable(false);
-        jtaRecords.setBounds(84, 283, 320, 166);
+        jtaRecords.setBounds(85, 335, 320, 166);
         getContentPane().add(jtaRecords);
+        
+        btnCrud = new JButton("CRUD");
+        btnCrud.setBounds(157, 195, 177, 30);
+        getContentPane().add(btnCrud);
 	}
 
 	public void setListaRecords(String lista) {
@@ -87,6 +92,10 @@ public class BienvenidaVista extends JFrame {
 	public JButton getBtnJugar() {
 		return btnJugar;
 	}
+	
+	public JButton getBtnCrud() {
+		return btnCrud;
+	}
 
 	public JButton getBtnSalir() {
 		return btnSalir;
@@ -96,6 +105,7 @@ public class BienvenidaVista extends JFrame {
 		btnInscribir.addActionListener(escuchador);
 		btnJugar.addActionListener(escuchador);
 		btnSalir.addActionListener(escuchador);
+		btnCrud.addActionListener(escuchador);
 	}
 
 	public void cerrar() {

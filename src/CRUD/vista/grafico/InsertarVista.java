@@ -95,7 +95,7 @@ public class InsertarVista extends JFrame {
     tfNivel.setBackground(new Color(255, 255, 255));
     tfNivel.setFont(new Font("Dialog", Font.PLAIN, 12));
     tfNivel.setBounds(109, 353, 180, 30);
-    tfNivel.setHorizontalAlignment(SwingConstants.CENTER);
+    tfNivel.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(tfNivel);
     tfNivel.setColumns(10);
 

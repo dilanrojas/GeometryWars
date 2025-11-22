@@ -11,6 +11,8 @@ import CRUD.vista.grafico.EliminarVista;
 import CRUD.vista.grafico.InsertarVista;
 import CRUD.vista.grafico.MenuVista;
 import CRUD.vista.grafico.MostrarVista;
+import controlador.BienvenidaControlador;
+import vista.BienvenidaVista;
 import CRUD.controlador.grafico.MostrarControlador;
 
 /**
@@ -42,6 +44,9 @@ public class MenuControlador implements ActionListener {
 	
 	private MostrarVista mostrarVista;
 	private MostrarControlador mostrarControlador;
+	
+	private BienvenidaVista bienvenidaVista;
+	private BienvenidaControlador bienvenidaControlador;
 
 	public MenuControlador(
 		IUsuarioDAO modelo,
@@ -68,8 +73,8 @@ public class MenuControlador implements ActionListener {
         	actualizar();
         } else if (source == menuVista.getBtnConfiguraciones()) {
         	configuraciones();
-        } else if (source == menuVista.getBtnSalir()) {
-        	menuVista.cerrar();
+        } else if (source == menuVista.getBtnVolver()) {
+        	volver();
         }
     }
     
@@ -105,5 +110,11 @@ public class MenuControlador implements ActionListener {
     	configuracionesVista = new ConfiguracionesVista();
     	configuracionesControlador = new ConfiguracionesControlador(modelo, configuracionesVista);
     	buscar(configuracionesControlador);
+    }
+    
+    public void volver() {
+    	bienvenidaVista = new BienvenidaVista();
+    	bienvenidaControlador = new BienvenidaControlador(modelo, bienvenidaVista);
+    	menuVista.cerrar();
     }
 }

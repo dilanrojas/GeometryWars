@@ -19,7 +19,7 @@ public class MenuVista extends JFrame {
 	private JButton btnActualizar;
 	private JButton btnEliminar;
 	private JButton btnConfiguraciones;
-	private JButton btnSalir;
+	private JButton btnVolver;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
@@ -61,9 +61,9 @@ public class MenuVista extends JFrame {
 		btnConfiguraciones.setBounds(77, 209, 322, 27);
 		getContentPane().add(btnConfiguraciones);
 		
-		btnSalir = new JButton("Salir");
-		btnSalir.setBounds(77, 248, 322, 27);
-		getContentPane().add(btnSalir);
+		btnVolver = new JButton("Volver");
+		btnVolver.setBounds(77, 248, 322, 27);
+		getContentPane().add(btnVolver);
 	}
 
 	// Setters & Getters
@@ -72,7 +72,7 @@ public class MenuVista extends JFrame {
 	public JButton getBtnActualizar() { return btnActualizar; }
 	public JButton getBtnEliminar() { return btnEliminar; }
 	public JButton getBtnConfiguraciones() { return btnConfiguraciones; }
-	public JButton getBtnSalir() { return btnSalir; }
+	public JButton getBtnVolver() { return btnVolver; }
 
 	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
@@ -81,7 +81,7 @@ public class MenuVista extends JFrame {
 		btnActualizar.addActionListener(escuchador);
 		btnEliminar.addActionListener(escuchador);
 		btnConfiguraciones.addActionListener(escuchador);
-		btnSalir.addActionListener(escuchador);
+		btnVolver.addActionListener(escuchador);
 	}
 
 	// Método mostrar mensaje
@@ -91,7 +91,6 @@ public class MenuVista extends JFrame {
 	
 	// Método cerrar
 	public void cerrar() {
-		System.out.println("CERRAR - Vista de Menú");
 		dispose();
 	}
 }

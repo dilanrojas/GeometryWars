@@ -1,5 +1,7 @@
 package juego.escenas.niveles;
 
+import juego.escenas.dificultadNiveles.NivelDificil;
+
 /**
  * @author Dilan Rojas
  * @date Nov 22, 2025
@@ -7,6 +9,8 @@ package juego.escenas.niveles;
  * @description description
  */
 
-public class NivelExtra {
-
+public class NivelExtra extends NivelDificil {
+	public NivelExtra() {
+		super(10, 10);
+	}
 }

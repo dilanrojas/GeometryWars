@@ -33,7 +33,6 @@ public class MenuJuegoVista extends JFrame {
 		initComponents();
 		setTitle("Menu de juego");
 		setSize(400, 350);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -76,10 +75,10 @@ public class MenuJuegoVista extends JFrame {
 	}
 
 	// Configurar escuchadores
-	public void setEscuchadores(ActionListener listener) {
-		btnJugar.addActionListener(listener);
-		btnEstadisticas.addActionListener(listener);
-		btnSalir.addActionListener(listener);
+	public void setEscuchadores(ActionListener escuchador) {
+		btnJugar.addActionListener(escuchador);
+		btnEstadisticas.addActionListener(escuchador);
+		btnSalir.addActionListener(escuchador);
 	}
 
 	// Método mostrar mensaje

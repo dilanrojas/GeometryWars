@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import CRUD.controlador.grafico.InsertarControlador;
+import CRUD.controlador.grafico.MenuControlador;
 import CRUD.modelo.dao.IUsuarioDAO;
 import CRUD.vista.grafico.InsertarVista;
+import CRUD.vista.grafico.MenuVista;
 import vista.BienvenidaVista;
 import vista.IngresarJuegoVista;
 
@@ -37,11 +39,11 @@ public class BienvenidaControlador implements ActionListener{
 
         if (source == vista.getBtnInscribir()) {
             abrirInscripcion();
-        }
-        else if (source == vista.getBtnJugar()) {
+        } else if (source == vista.getBtnJugar()) {
             ingresarJuego();
-        }
-        else if (source == vista.getBtnSalir()) {
+        } else if (source == vista.getBtnCrud()) {
+        	crud();
+        } else if (source == vista.getBtnSalir()) {
             vista.cerrar();
         }
     }
@@ -59,5 +61,11 @@ public class BienvenidaControlador implements ActionListener{
 
     private void cargarRecords() {
         vista.setListaRecords(modelo.getRecords(5));
+    }
+    
+    private void crud() {
+    	MenuVista menuVista = new MenuVista();
+    	MenuControlador menuControlador = new MenuControlador(modelo, menuVista);
+    	vista.cerrar();
     }
 }

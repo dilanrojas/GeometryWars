@@ -10,7 +10,7 @@ import juego.escenas.Nivel;
  */
 
 public class NivelMedio extends Nivel {
-	public NivelMedio(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
+	public NivelMedio(int enemigosPorOleada, int enemigosParaGanar) {
 		super(8.0, enemigosPorOleada, enemigosParaGanar);
 	}
 

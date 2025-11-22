@@ -10,7 +10,7 @@ import juego.escenas.Nivel;
  */
 
 public class NivelDificil extends Nivel {
-	public NivelDificil(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
+	public NivelDificil(int enemigosPorOleada, int enemigosParaGanar) {
 		super(6.0, enemigosPorOleada, enemigosParaGanar);
 	}
 

@@ -92,6 +92,13 @@ public class Usuario {
 	public void setConfiguraciones(Configuraciones configuraciones) {
 		this.configuraciones = configuraciones;
 	}
+	
+	public String estadisticas() {
+		return "Nombre: " + nombre +
+			   "\nNickname: " + nickname +
+			   "\nPuntaje máximo: " + puntaje +
+			   "\nNivel actual: " + nivel;
+	}
 
 	@Override
 	public String toString() {
