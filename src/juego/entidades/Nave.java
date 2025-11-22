@@ -8,7 +8,6 @@ import motor.entidades.Sprite;
 import motor.entidades.SpriteMovible;
 import motor.entidades.interfaces.IColisionable;
 import motor.input.InputKeyboard;
-import motor.input.Key;
 import motor.util.Vector2D;
 
 /**

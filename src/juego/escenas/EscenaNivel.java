@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 import juego.Assets;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
-import juego.entidades.EnemigoBase;
+import juego.entidades.EnemigoFacil;
+import juego.entidades.EnemigoMedio;
 import juego.entidades.Nave;
 import motor.Scene;
 import motor.entidades.ListaEntidades;
@@ -19,35 +20,38 @@ import motor.util.Vector2D;
  * @author AnaGonzalezC5F593
  * @date 21 nov 2025
  * @version 1.0
- * @description TODO
+ * @description Plantilla para los niveles
  */
 
-public abstract class EscenaBase extends Scene {
-	public double tiempoEntreOrdas = 1.0;
-	public Nave jugador;
-	public ListaEntidades balas;
-	public ListaEntidades listaEnemigos;
-	public AdministradorDeColisiones administrador;
+public abstract class EscenaNivel extends Scene {
+	private Nave jugador;
+	private ListaEntidades balas;
+	private ListaEntidades listaEnemigos;
+	private AdministradorDeColisiones administrador;
+	private boolean primeraOrda = true;
+	private double tiempoOrdaInicial = 1.0;
 
+	public double tiempoEntreOrdas;
+	private int enemigosPorOleada;
+	private int enemigosParaGanar;
 	private int enemigosMuertos = 0;
+
 	private double contador = 0;
 
-	public EscenaBase() {
-
+	public EscenaNivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
 		this.administrador = new AdministradorDeColisiones();
-
 		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
-
 		this.jugador = new Nave(Assets.textura_nave, new Vector2D(200, 200), controles);
 		this.balas = new ListaEntidades();
 
-		this.tiempoEntreOrdas = getTiempoEntreOleadasInicial();
+		this.tiempoEntreOrdas = tiempoEntreOrdas;
+		this.enemigosPorOleada = enemigosPorOleada;
+		this.enemigosParaGanar = enemigosParaGanar;
 	}
 
 	@Override
 	public final void actualizar() {
-
 		if (jugador != null)
 			jugador.actualizar();
 
@@ -56,15 +60,15 @@ public abstract class EscenaBase extends Scene {
 		listaEnemigos.actualizar();
 
 		contador += motor.GameLoop.deltaTimeSeconds;
-		if (contador > tiempoEntreOrdas) {
-			oleadaDeEnemigos();
+		if (primeraOrda && contador > tiempoOrdaInicial) {
+			generarEnemigos();
 			contador = 0;
-			tiempoEntreOrdas = 10.0;
-		}
+			primeraOrda = false;
 
-		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
-			JOptionPane.showMessageDialog(null, "Perdiste");
-			destruir();
+		} else if (!primeraOrda && contador > tiempoEntreOrdas) {
+			generarEnemigos();
+			contador = 0;
+
 		}
 
 		controlarEnemigos();
@@ -102,21 +106,15 @@ public abstract class EscenaBase extends Scene {
 			enemigosMuertos++;
 			Assets.reproducirExplosion();
 
-			if (enemigosMuertos == getCantidadParaGanar()) {
+			if (enemigosMuertos == this.enemigosParaGanar) {
 				JOptionPane.showMessageDialog(null, "Ganaste");
 				destruir();
 			}
 		}
-	}
 
-	private void oleadaDeEnemigos() {
-		int cantidad = getCantidadPorOleada();
-		double min = 500;
-		double max = 500;
-
-		for (int i = 0; i < cantidad; i++) {
-			Vector2D spawn = generarSpawnAlejado(jugador.getTransform().getPosicion(), min, max);
-			listaEnemigos.add(crearEnemigo(spawn));
+		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
+			JOptionPane.showMessageDialog(null, "Perdiste");
+			destruir();
 		}
 	}
 
@@ -129,13 +127,31 @@ public abstract class EscenaBase extends Scene {
 		return new Vector2D(x, y);
 	}
 
-	// MÉTODOS ABSTRACTOS
+	protected void oleada (
+			double porcentajeFaciles,
+			double porcentajeMedios,
+			double porcentajeDificiles,
+			int distanciaMin,
+			int distanciaMax
+		) {
+		int cantidadFaciles = (int) (enemigosPorOleada * porcentajeFaciles);
+		int cantidadMedios  = enemigosPorOleada - cantidadFaciles;
 
-	public abstract EnemigoBase crearEnemigo(Vector2D posicion);
+		Vector2D posJugador = jugador.getTransform().getPosicion();
 
-	public abstract int getCantidadParaGanar();
+		// === ENEMIGOS FÁCILES ===
+		for (int i = 0; i < cantidadFaciles; i++) {
+			Vector2D spawn = generarSpawnAlejado(posJugador, distanciaMin, distanciaMax);
+			listaEnemigos.add(new EnemigoFacil(spawn, jugador));
+		}
 
-	public abstract int getCantidadPorOleada();
+		// === ENEMIGOS MEDIOS ===
+		for (int i = 0; i < cantidadMedios; i++) {
+			Vector2D spawn = generarSpawnAlejado(posJugador, distanciaMin, distanciaMax);
+			listaEnemigos.add(new EnemigoMedio(spawn, jugador));
+		}
+	}
 
-	public abstract double getTiempoEntreOleadasInicial();
+	// Abstractos
+	public abstract void generarEnemigos();
 }

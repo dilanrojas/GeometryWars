@@ -1,6 +1,6 @@
 package juego;
 
-import juego.escenas.EscenaNivel1;
+import juego.escenas.niveles.Nivel1;
 import motor.GameLoop;
 
 /**
@@ -18,7 +18,7 @@ public class AppJuego {
             Assets.reproducirMusicaFondo();
             
             // Paso 2: Crear el juego
-            Game game = new Game(new EscenaNivel1());
+            Game game = new Game(new Nivel1());
             // Paso 3: Iniciar el bucle principal del juego
             GameLoop gameLoop = new GameLoop(game);
         }

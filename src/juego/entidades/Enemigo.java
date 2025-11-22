@@ -3,70 +3,113 @@ package juego.entidades;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import motor.component.Renderer;
 import motor.entidades.SpriteMovible;
 import motor.entidades.interfaces.IColisionable;
-import motor.input.InputMouse;
 import motor.util.Vector2D;
 
 /**
- * @author Dilan Rojas
- * @date Nov 18, 2025
+ * @author AnaGonzalezC5F593
+ * @date 21 nov 2025
  * @version 1.0
- * @description description
+ * @description Plantilla para enemigos
  */
 
-public class Enemigo extends SpriteMovible {
+public abstract class Enemigo extends SpriteMovible {
+
+	// Attributes
 	private Vector2D direccionActual;
 	private Nave target;
 
-	public Enemigo(BufferedImage textura, Vector2D posicion, Nave target) {
+	private double velocidad;
+	private double aceleracion;
+	private double desviacion;
+
+	public Enemigo(
+		BufferedImage textura,
+		Vector2D posicion,
+		Nave target,
+		double velocidad,
+		double aceleracion,
+		double desviacion
+	) {
 		super(textura, posicion);
+
 		this.target = target;
-		
+		this.velocidad = velocidad;
+		this.aceleracion = aceleracion;
+		this.desviacion = desviacion;
+
 		direccionActual = Vector2D.ZERO;
 	}
-	
+
 	@Override
 	public void actualizar() {
-		perseguir(target.getPosicion());
+    perseguir(target.getPosicion());
 		super.actualizar();
 	}
 
 	@Override
 	public void dibujar(Graphics g) {
 		super.dibujar(g);
-		//Renderer.dibujarCollider(g, this);
 	}
-	
-	public void perseguir(Vector2D posicionJugador) {
-		getPhysics().setAceleracion(1.5);
-		getMovement().setVelocidad(100);
-		
+
+  public void perseguir(Vector2D posicionJugador) {
 		Vector2D objetivo = posicionJugador.subtract(transform.getPosicion()).normalize();
 
-	    // Suavizado
-	    double factorSuavizado = 0.15;
-	    direccionActual = direccionActual.lerp(objetivo, factorSuavizado).normalize();
+		// Configuraciones de movimiento
+		getPhysics().setAceleracion(this.aceleracion);
+		getMovement().setVelocidad(this.velocidad);
+		double maxDesviacion = Math.toRadians(this.desviacion);
 
-	    // Pequeño ruido angular
-	    double maxDesviacion = Math.toRadians(6);
-	    double ruido = (Math.random() * 2 - 1) * maxDesviacion;
-	    double cos = Math.cos(ruido);
-	    double sin = Math.sin(ruido);
-	    double x = direccionActual.getX() * cos - direccionActual.getY() * sin;
-	    double y = direccionActual.getX() * sin + direccionActual.getY() * cos;
-	    direccionActual = new Vector2D(x, y).normalize();
+		// Suavizado
+		double factorSuavizado = 0.15; // default: 0.15
+		direccionActual = direccionActual.lerp(objetivo, factorSuavizado).normalize();
 
-	    movement.setDireccion(direccionActual);
-	    physics.acelerar(movement);
-	    movement.mover(transform);
+		// Pequeño ruido angular
+		double ruido = (Math.random() * 2 - 1) * maxDesviacion;
+		double cos = Math.cos(ruido);
+		double sin = Math.sin(ruido);
+		double x = direccionActual.getX() * cos - direccionActual.getY() * sin;
+		double y = direccionActual.getX() * sin + direccionActual.getY() * cos;
+
+		direccionActual = new Vector2D(x, y).normalize();
+
+		movement.setDireccion(direccionActual);
+		physics.acelerar(movement);
+		movement.mover(transform);
+  }
+	@Override
+	public void alColisionarCon(IColisionable otro) {
+		super.destruir();
 	}
 
-    @Override
-    public void alColisionarCon(IColisionable otro) {
-    	super.destruir();
-    }
-}
+  // Getters & Setters
+	public double getVelocidad() {
+		return velocidad;
+	}
 
+  public void setVelocidad(double velocidad) {
+    this.velocidad = velocidad;
+  }
+
+	public double getAceleracion() {
+		return aceleracion;
+	}
+
+  public void setAceleracion(double aceleracion) {
+    this.aceleracion = aceleracion;
+  }
+
+	public double getDesviacion() {
+		return desviacion;
+	}
+
+  public void setDesviacion(double desviacion) {
+    this.desviacion = desviacion;
+  }
+
+	public Nave getTarget() {
+		return target;
+	}
+}
 

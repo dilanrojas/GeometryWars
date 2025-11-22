@@ -45,7 +45,7 @@ public class Config {
      * </p>
      */
     public static final int HEIGHT = 768;
-    
+
     public static final String TITLE = "PRUEBAS PARA MEJORAR EL MOTOR V7";
 }
 

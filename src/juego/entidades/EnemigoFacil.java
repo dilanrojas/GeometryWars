@@ -1,7 +1,5 @@
 package juego.entidades;
 
-import java.awt.image.BufferedImage;
-
 import juego.Assets;
 import motor.util.Vector2D;
 
@@ -12,39 +10,15 @@ import motor.util.Vector2D;
  * @description Clase EnemigoFacil es un enemigo sencillo, el cual no tiene un ataque especial ya quesu forma de ataque es colisionar con el jugador.
  */
 
-public class EnemigoFacil extends EnemigoBase {
-	public EnemigoFacil(Vector2D posicion, Nave target) {
-		super(Assets.textura_enemigoFacil, posicion, target);
-		
-	}
-
-	@Override
-	public double getVelocidad() {
-		return 50.0;
-	}
-
-	@Override
-	public double getAceleracion() {
-		return 1.5;
-	}
-
-	@Override
-	public double getSuavizado() {
-		return 15.0;
-	}
-
-	@Override
-	public double getDesviacionAngular() {
-		return 0.05;
-	}
-
-	@Override
-	public void mover() {
-		perseguir(target.getPosicion());
-	}
-
-	@Override
-	public void atacar() {
-	}
-
+public class EnemigoFacil extends Enemigo {
+  public EnemigoFacil(Vector2D posicion, Nave target) {
+    super(
+        Assets.textura_enemigoFacil,
+        posicion,
+        target,
+        15.0,  // <-- Velocidad
+        1800,  // <-- Aceleracion
+        0     // <-- Desviacion
+    );
+  }
 }

@@ -7,7 +7,6 @@ package juego;
  * @description description
  */
 
-import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 import javax.sound.sampled.Clip;
@@ -121,9 +120,9 @@ public class Assets {
 		textura_bala = Loader.cargarImagen("/asteroide/laser_blue.png");
 		textura_fire = Loader.cargarImagen("/asteroide/fire_blue.png");
 		
-		textura_enemigoFacil = Loader.cargarImagen("/enemigos/mine.png");
-		textura_enemigoMedio = Loader.cargarImagen("/enemigos/mine_red.png");
-		textura_enemigoDificil = Loader.cargarImagen("/enemigos/Bomber.png");
+		textura_enemigoFacil = Loader.cargarImagen("/enemigos/enemigoFacil.png");
+		textura_enemigoMedio = Loader.cargarImagen("/enemigos/enemigoMedio.png");
+		textura_enemigoDificil = Loader.cargarImagen("/enemigos/enemigoDificil.png");
 		
 		musicaFondo = Loader.cargarSonido("/musica/bgm.wav");
 		efectoDisparar = Loader.cargarSonido("/sonidos/shoot2.wav");
@@ -131,10 +130,6 @@ public class Assets {
 		
 		textura_fondo = Loader.cargarImagen("/fondos/bg_1.png");
 		
-		// AQUI SE REALIZA LA CARGA DE LAS FUENTES DEL JUEGO
-
-		// AQUI SE REALIZA LA CARGA DE LOS SONIDOS DEL JUEGO
-
 		return true;
 	}
 	
@@ -147,7 +142,7 @@ public class Assets {
 	    // Control de volumen
 	    FloatControl controlVolumen =
 	    (FloatControl) musicaFondo.getControl(FloatControl.Type.MASTER_GAIN);
-	    controlVolumen.setValue(-12.0f); // ajusta a tu gusto
+	    controlVolumen.setValue(-12.0f);
 
 	    musicaFondo.loop(Clip.LOOP_CONTINUOUSLY);
 	    musicaFondo.start();
