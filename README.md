@@ -20,4 +20,3 @@
 - Configurar las dificultades (Falta implementarlo con los ajustes) **(Dilan)**
 - Configurar armas (automática y ráfagas) (Sebas)
 - Configurar vidas extra (3, 5, 7 y 10)
-- Realizar cambios entre niveles (Actualmente detiene el programa al terminar el nivel)

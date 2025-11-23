@@ -111,6 +111,7 @@ public class NivelesVista extends JFrame {
 		contentPane.add(btnNivel9);
 
 		btnNivelExtra = new JButton("?");
+		btnNivelExtra.setBackground(new Color(233, 193, 193));
 		btnNivelExtra.setEnabled(false);
 		btnNivelExtra.setBounds(174, 208, 47, 47);
 		contentPane.add(btnNivelExtra);

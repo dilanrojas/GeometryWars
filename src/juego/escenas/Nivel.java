@@ -25,6 +25,7 @@ import motor.util.Vector2D;
  */
 
 public abstract class Nivel extends Scene {
+	// Componentes
 	private NivelesControlador controlador;
 	
 	private Nave jugador;
@@ -128,7 +129,6 @@ public abstract class Nivel extends Scene {
 	}
 	
 	public void completado(boolean gano) {
-		System.out.println(nivelActual);
 		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual);
 	}
 

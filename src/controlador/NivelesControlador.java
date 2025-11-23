@@ -38,7 +38,7 @@ public class NivelesControlador implements ActionListener {
 	
 	private String instrucciones =
 			"Instrucciones y reglas:\n" +
-			"Evada y elimine a los enemigos para ganar puntos\n" +
+			"Evada y elimine a los enemigos para ganar puntos\n\n" +
 			"Controles: \n" +
 			" Avanzar: W\n" +
 			" Derecha: D\n" +
@@ -91,7 +91,8 @@ public class NivelesControlador implements ActionListener {
 				nivelPendiente = vista.getListaNiveles()[i];
 				nivelPendiente.setEnabled(true);
 			} catch (Exception e) {
-				vista.mostrarMsj("¡Gracias por completar Geometry Wars!");
+				// Error al obtener el nivel pendiente
+				vista.mostrarMsj("No se logró obtener el nivel pendiente");
 			}
 			
 			// Cambiar el fondo a niveles completados
@@ -115,7 +116,6 @@ public class NivelesControlador implements ActionListener {
     }
     
     public void reproducirMusica() {
-    	Assets.detenerMusicaFondo();
     	Assets.reproducirMusicaFondo();
     }
     
@@ -129,14 +129,16 @@ public class NivelesControlador implements ActionListener {
     public void cerrarJuego(boolean gano, int puntajeObtenido, int nivelAlcanzado) {
     	if (gano) {
     		usuarioIngresado.setPuntaje(usuarioIngresado.getPuntaje() + puntajeObtenido);
-    		if (usuarioIngresado.getNivel() != listaNiveles().length &&
-    				usuarioIngresado.getNivel() <= nivelAlcanzado
-    				) {
+    		if (usuarioIngresado.getNivel() != listaNiveles().length - 1 &&
+    			usuarioIngresado.getNivel() <= nivelAlcanzado
+    		) {
     			usuarioIngresado.setNivel(nivelAlcanzado + 1);    		
     		}
-    		modelo.guardarDataset();    		
+    		modelo.guardarDataset(); 
+    		cargarNiveles();
     	}
     	
+    	Assets.detenerMusicaFondo();
         if (gameActual != null) gameActual.destruir();
         if (gameLoopActual != null) gameLoopActual.detener();
     }

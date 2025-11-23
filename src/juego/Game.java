@@ -48,6 +48,5 @@ public class Game extends Entidad {
 	@Override
 	public void destruir() {
 		lienzo.dispose();
-		System.exit(0);
 	}
 }
