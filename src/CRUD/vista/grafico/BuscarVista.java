@@ -57,8 +57,8 @@ public class BuscarVista extends JFrame {
         getContentPane().add(tfBuscarInput);
         tfBuscarInput.setColumns(10);
         
-        JLabel lblNewLabel = new JLabel("Nombre | Nivel | Puntaje");
-        lblNewLabel.setBounds(285, 23, 154, 17);
+        JLabel lblNewLabel = new JLabel("Nombre | Nickname | Puntaje | Nivel");
+        lblNewLabel.setBounds(266, 23, 254, 17);
         getContentPane().add(lblNewLabel);
         
         btnBuscar = new JButton("Buscar");

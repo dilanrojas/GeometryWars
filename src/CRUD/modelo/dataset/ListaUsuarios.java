@@ -158,25 +158,25 @@ public class ListaUsuarios {
 
   // === BÚSQUEDAS ===
 
-  // Buscar por nombre, nickname, ID y nivel
+  // Buscar por nombre, nickname, puntaje y nivel
   public Usuario[] buscar(String entrada) {
 	  Usuario[] coincidencias = new Usuario[10];
 	  int cantidadCoincidencias = 0;
 
 	  // Comprobar si la entrada es un numero (ID o Nivel) o no.
 	  try {
-		  // Si es un numero, se busca por ID y Nivel.
+		  // Si es un numero, se busca por puntaje y Nivel.
 		  int entradaNumero = Integer.parseInt(entrada);
 
 		  for (Usuario usuario : lista) {
-			  if (usuario != null && (usuario.getNivel() == entradaNumero || usuario.getID() == entradaNumero)) {
+			  if (usuario != null && (usuario.getNivel() == entradaNumero || usuario.getPuntaje() == entradaNumero)) {
 				  if (coincidencias.length >= cantidadCoincidencias) coincidencias = crecer(coincidencias);
 				  coincidencias[cantidadCoincidencias++] = usuario;
 			  }
 		  }
 
 	  } catch (NumberFormatException e) {
-		  // No es un número, se busca solo por nombre
+		  // No es un número, se busca solo por nombre y nickname
 		  String entradaNormalizada = entrada.toLowerCase();
 
 		  for (Usuario usuario: lista) {
