@@ -1,7 +1,10 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
@@ -30,6 +33,18 @@ public class NivelesControlador implements ActionListener {
 	private MenuJuegoControlador menuJuegoControlador;
 	private MenuJuegoVista menuJuegoVista;
 	
+	private GameLoop gameLoopActual;
+	private Game gameActual;
+	
+	private String instrucciones =
+			"Instrucciones y reglas:\n" +
+			"Evada y elimine a los enemigos para ganar puntos\n" +
+			"Controles: \n" +
+			" Avanzar: W\n" +
+			" Derecha: D\n" +
+			" Izquierda: A\n" +
+			" Frenar: S\n";
+	
 	// Constructor
 	public NivelesControlador(IUsuarioDAO modelo, NivelesVista vista, Usuario usuarioIngresado) {
 		this.modelo = modelo;
@@ -43,8 +58,6 @@ public class NivelesControlador implements ActionListener {
 			vista.mostrarMsj("Error al cargar los assets");
 			return;
 		}
-		
-		reproducirMusica();
 	}
 
 	@Override
@@ -64,9 +77,30 @@ public class NivelesControlador implements ActionListener {
 	
 	public void cargarNiveles() {
 		int nivelActual = usuarioIngresado.getNivel();
+		JButton nivelPendiente = null;
+		JButton nivelCompletado = null;
 		
-		for (int i = 0; i < nivelActual; i++) {
-			vista.getListaNiveles()[i].setEnabled(true);
+		// Si juega por primera vez, mostrar instrucciones
+		if (usuarioIngresado.getNivel() == 0) {
+			vista.mostrarMsj(instrucciones);
+		}
+		
+		for (int i = 0; i <= nivelActual; i++) {
+			// Comprobar niveles pendiente
+			try {
+				nivelPendiente = vista.getListaNiveles()[i];
+				nivelPendiente.setEnabled(true);
+			} catch (Exception e) {
+				vista.mostrarMsj("¡Gracias por completar Geometry Wars!");
+			}
+			
+			// Cambiar el fondo a niveles completados
+			try {
+				nivelCompletado = vista.getListaNiveles()[i - 1];
+				nivelCompletado.setBackground(new Color(193, 233, 193));
+			} catch (Exception e2) {
+				// No ha completado el primer nivel
+			}
 		}
 	}
 	
@@ -81,16 +115,35 @@ public class NivelesControlador implements ActionListener {
     }
     
     public void reproducirMusica() {
+    	Assets.detenerMusicaFondo();
     	Assets.reproducirMusicaFondo();
     }
     
     public void comenzarNivel(Scene nivel) {
-        Game game = new Game(nivel);
-        GameLoop gameLoop = new GameLoop(game);
+        ((Nivel) nivel).setControlador(this);
+        
+        gameActual = new Game(nivel);
+        gameLoopActual = new GameLoop(gameActual);
+    }
+    
+    public void cerrarJuego(boolean gano, int puntajeObtenido, int nivelAlcanzado) {
+    	if (gano) {
+    		usuarioIngresado.setPuntaje(usuarioIngresado.getPuntaje() + puntajeObtenido);
+    		if (usuarioIngresado.getNivel() != listaNiveles().length &&
+    				usuarioIngresado.getNivel() <= nivelAlcanzado
+    				) {
+    			usuarioIngresado.setNivel(nivelAlcanzado + 1);    		
+    		}
+    		modelo.guardarDataset();    		
+    	}
+    	
+        if (gameActual != null) gameActual.destruir();
+        if (gameLoopActual != null) gameLoopActual.detener();
     }
     
     public Nivel[] listaNiveles() {
     	Nivel[] lista = {
+    			new Nivel0(),
     			new Nivel1(),
     			new Nivel2(),
     			new Nivel3(),

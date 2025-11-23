@@ -14,9 +14,10 @@
 - ~~Solicitar datos al ingresar al juego (nickname y contraseña)~~ (Sebas)
 - ~~Crear enemigos (al menos 3 con diferente aspecto y movilidad)~~ **(Ana)**
 - ~~Buscar los assets~~ **(Dilan)**
+- ~~Crear un nivel como base~~ **(Ana)**
+- ~~Crear los demás niveles~~ **(Ana)**
 - Cargar e implementar configuraciones en el juego (usuariosData) **(Dilan)**
 - Configurar las dificultades (Falta implementarlo con los ajustes) **(Dilan)**
 - Configurar armas (automática y ráfagas) (Sebas)
 - Configurar vidas extra (3, 5, 7 y 10)
-- ~~Crear un nivel como base~~ **(Ana)**
-- ~~Crear los demás niveles~~ **(Ana)**
+- Realizar cambios entre niveles (Actualmente detiene el programa al terminar el nivel)

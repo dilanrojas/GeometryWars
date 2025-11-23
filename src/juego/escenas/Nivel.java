@@ -3,6 +3,8 @@ package juego.escenas;
 import java.awt.Graphics;
 import java.util.Random;
 import javax.swing.JOptionPane;
+
+import controlador.NivelesControlador;
 import juego.Assets;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
@@ -23,12 +25,15 @@ import motor.util.Vector2D;
  */
 
 public abstract class Nivel extends Scene {
+	private NivelesControlador controlador;
+	
 	private Nave jugador;
 	private ListaEntidades balas;
 	private ListaEntidades listaEnemigos;
 	private AdministradorDeColisiones administrador;
 	private boolean primeraOrda = true;
 	private double tiempoOrdaInicial = 1.0;
+	private int nivelActual;
 
 	public double tiempoEntreOrdas;
 	private int enemigosPorOleada;
@@ -47,6 +52,8 @@ public abstract class Nivel extends Scene {
 		this.tiempoEntreOrdas = tiempoEntreOrdas;
 		this.enemigosPorOleada = enemigosPorOleada;
 		this.enemigosParaGanar = enemigosParaGanar;
+		
+		Assets.reproducirMusicaFondo();
 	}
 
 	@Override
@@ -108,15 +115,21 @@ public abstract class Nivel extends Scene {
 
 			if (enemigosMuertos == this.enemigosParaGanar) {
 				JOptionPane.showMessageDialog(null, "Ganaste");
-				destruir();
+				completado(true );
 			}
 		}
 
 		// Jugador --> Enemigos
 		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
 			JOptionPane.showMessageDialog(null, "Perdiste");
-			destruir();
+			completado(false);
+			
 		}
+	}
+	
+	public void completado(boolean gano) {
+		System.out.println(nivelActual);
+		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual);
 	}
 
 	// Generar origen (spawn) de enemigos en un radio determinado
@@ -169,4 +182,109 @@ public abstract class Nivel extends Scene {
 
 	// Abstractos
 	public abstract void generarEnemigos();
+
+	// Getters & Setters
+	public Nave getJugador() {
+		return jugador;
+	}
+
+	public void setJugador(Nave jugador) {
+		this.jugador = jugador;
+	}
+
+	public ListaEntidades getBalas() {
+		return balas;
+	}
+
+	public void setBalas(ListaEntidades balas) {
+		this.balas = balas;
+	}
+
+	public ListaEntidades getListaEnemigos() {
+		return listaEnemigos;
+	}
+
+	public void setListaEnemigos(ListaEntidades listaEnemigos) {
+		this.listaEnemigos = listaEnemigos;
+	}
+
+	public AdministradorDeColisiones getAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(AdministradorDeColisiones administrador) {
+		this.administrador = administrador;
+	}
+
+	public boolean isPrimeraOrda() {
+		return primeraOrda;
+	}
+
+	public void setPrimeraOrda(boolean primeraOrda) {
+		this.primeraOrda = primeraOrda;
+	}
+
+	public double getTiempoOrdaInicial() {
+		return tiempoOrdaInicial;
+	}
+
+	public void setTiempoOrdaInicial(double tiempoOrdaInicial) {
+		this.tiempoOrdaInicial = tiempoOrdaInicial;
+	}
+
+	public int getNivelActual() {
+		return nivelActual;
+	}
+
+	public void setNivelActual(int nivelActual) {
+		this.nivelActual = nivelActual;
+	}
+
+	public double getTiempoEntreOrdas() {
+		return tiempoEntreOrdas;
+	}
+
+	public void setTiempoEntreOrdas(double tiempoEntreOrdas) {
+		this.tiempoEntreOrdas = tiempoEntreOrdas;
+	}
+
+	public int getEnemigosPorOleada() {
+		return enemigosPorOleada;
+	}
+
+	public void setEnemigosPorOleada(int enemigosPorOleada) {
+		this.enemigosPorOleada = enemigosPorOleada;
+	}
+
+	public int getEnemigosParaGanar() {
+		return enemigosParaGanar;
+	}
+
+	public void setEnemigosParaGanar(int enemigosParaGanar) {
+		this.enemigosParaGanar = enemigosParaGanar;
+	}
+
+	public int getEnemigosMuertos() {
+		return enemigosMuertos;
+	}
+
+	public void setEnemigosMuertos(int enemigosMuertos) {
+		this.enemigosMuertos = enemigosMuertos;
+	}
+
+	public double getContador() {
+		return contador;
+	}
+
+	public void setContador(double contador) {
+		this.contador = contador;
+	}
+
+	public NivelesControlador getControlador() {
+		return controlador;
+	}
+	
+	public void setControlador(NivelesControlador controlador) {
+	    this.controlador = controlador;
+	}
 }

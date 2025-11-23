@@ -1,6 +1,6 @@
 package juego.escenas.niveles;
 
-import juego.escenas.dificultadNiveles.NivelDificil;
+import juego.escenas.dificultadNiveles.NivelFacil;
 
 /**
  * @author Dilan Rojas
@@ -9,9 +9,9 @@ import juego.escenas.dificultadNiveles.NivelDificil;
  * @description description
  */
 
-public class Nivel8 extends NivelDificil {
-	public Nivel8() {
+public class Nivel0 extends NivelFacil {	
+	public Nivel0() {
 		super(10, 10);
-		super.setNivelActual(8);
+		super.setNivelActual(0);
 	}
 }

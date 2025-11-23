@@ -16,7 +16,7 @@ public class Configuraciones {
 	
 	// Constructores
 	public Configuraciones() {
-		this(1, 1, 1, 1);
+		this(1, 1, 1, 3);
 	}
 
 	public Configuraciones(int velocidad, int arma, int dificultad, int vidas) {

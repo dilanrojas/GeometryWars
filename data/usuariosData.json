@@ -1,6 +1,20 @@
 {"usuarios": [
     {
         "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 170,
+        "nickname": "joswed",
+        "contrasena": "josue00",
+        "ID": 1,
+        "nombre": "Dilan Rojas",
+        "nivel": 11
+    },
+    {
+        "configuraciones": {
             "vidas": 10,
             "arma": 1,
             "velocidad": 3,
@@ -9,7 +23,7 @@
         "puntaje": 44,
         "nickname": "felipe",
         "contrasena": "fp*001",
-        "ID": 9,
+        "ID": 2,
         "nombre": "Felipe",
         "nivel": 6
     },
@@ -23,7 +37,7 @@
         "puntaje": 43,
         "nickname": "davidcr",
         "contrasena": "dv_123",
-        "ID": 5,
+        "ID": 3,
         "nombre": "David",
         "nivel": 2
     },
@@ -37,7 +51,7 @@
         "puntaje": 34,
         "nickname": "marco18",
         "contrasena": "mk_2025",
-        "ID": 3,
+        "ID": 4,
         "nombre": "Marco",
         "nivel": 1
     },
@@ -51,7 +65,7 @@
         "puntaje": 24,
         "nickname": "ana10",
         "contrasena": "ag120",
-        "ID": 2,
+        "ID": 5,
         "nombre": "Ana",
         "nivel": 3
     },
@@ -65,7 +79,7 @@
         "puntaje": 17,
         "nickname": "maria20",
         "contrasena": "mr_777",
-        "ID": 8,
+        "ID": 6,
         "nombre": "María",
         "nivel": 0
     },
@@ -79,7 +93,7 @@
         "puntaje": 4,
         "nickname": "lucia9",
         "contrasena": "lc*99",
-        "ID": 4,
+        "ID": 7,
         "nombre": "Lucía",
         "nivel": 4
     },
@@ -93,7 +107,7 @@
         "puntaje": 3,
         "nickname": "karla",
         "contrasena": "krl_88",
-        "ID": 6,
+        "ID": 8,
         "nombre": "Karla",
         "nivel": 5
     },
@@ -107,7 +121,7 @@
         "puntaje": 0,
         "nickname": "sebas",
         "contrasena": "Xuz{oo7",
-        "ID": 1,
+        "ID": 9,
         "nombre": "Sebastián",
         "nivel": 0
     },
@@ -121,7 +135,7 @@
         "puntaje": 0,
         "nickname": "jorge",
         "contrasena": "jg2025",
-        "ID": 7,
+        "ID": 10,
         "nombre": "Jorge",
         "nivel": 1
     },
@@ -135,7 +149,7 @@
         "puntaje": 0,
         "nickname": "sofiaj",
         "contrasena": "sfj123",
-        "ID": 10,
+        "ID": 11,
         "nombre": "Sofía",
         "nivel": 2
     },
@@ -149,7 +163,7 @@
         "puntaje": 0,
         "nickname": "andres",
         "contrasena": "and_49",
-        "ID": 11,
+        "ID": 12,
         "nombre": "Andrés",
         "nivel": 0
     },
@@ -163,22 +177,8 @@
         "puntaje": 0,
         "nickname": "paola",
         "contrasena": "pl092",
-        "ID": 12,
+        "ID": 13,
         "nombre": "Paola",
         "nivel": 4
-    },
-    {
-        "configuraciones": {
-            "vidas": 1,
-            "arma": 1,
-            "velocidad": 1,
-            "dificultad": 1
-        },
-        "puntaje": 0,
-        "nickname": "joswed",
-        "contrasena": "josue00",
-        "ID": 13,
-        "nombre": "Dilan Rojas",
-        "nivel": 10
     }
 ]}
