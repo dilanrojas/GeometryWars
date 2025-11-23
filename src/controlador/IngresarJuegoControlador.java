@@ -36,8 +36,17 @@ public class IngresarJuegoControlador implements ActionListener {
 		Usuario usuarioIngresado = null;
 		
 		if (source == vista.getBtnIngresar()) {
+			if (vista.getNickname().isBlank() && vista.getContrasena().isBlank()) {
+				vista.mostrarMsj("Ingrese un usuario válido para continuar");
+				return;
+			}
+			
 			try {
 				usuarioIngresado = modelo.buscar(vista.getNickname())[0];
+				if (!usuarioIngresado.getNickname().equals(vista.getNickname())) {
+					vista.mostrarMsj("El usuario ingresado es válido");
+					return;
+				}
 			} catch (Exception ex) {
 				vista.mostrarMsj("El usuario ingresado no existe");
 				return;
