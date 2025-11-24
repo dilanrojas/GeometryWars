@@ -11,7 +11,7 @@ import juego.escenas.Nivel;
 
 public class NivelFacil extends Nivel {
   public NivelFacil(int enemigosPorOleada, int enemigosParaGanar) {
-    super(15.0, enemigosPorOleada, enemigosParaGanar);
+    super(10.0, enemigosPorOleada, enemigosParaGanar);
   }
 
   @Override
@@ -19,4 +19,5 @@ public class NivelFacil extends Nivel {
     oleada(0.7, 0.3, 0.0, 600, 680);
   }
 }
+
 
