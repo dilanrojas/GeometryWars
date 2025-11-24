@@ -16,6 +16,6 @@ public class NivelDificil extends Nivel {
 
 	@Override
 	public void generarEnemigos() {
-		oleada(0.1, 0.3, 0.6, 480, 520);
+		oleada(0.0, 0.4, 0.6, 480, 520);
 	}
 }

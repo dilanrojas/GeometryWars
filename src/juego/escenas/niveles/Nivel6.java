@@ -11,7 +11,7 @@ import juego.escenas.dificultadNiveles.NivelMedio;
 
 public class Nivel6 extends NivelMedio {
 	public Nivel6() {
-		super(10, 20);
+		super(14, 20);
 		super.setNivelActual(6);
 	}
 }

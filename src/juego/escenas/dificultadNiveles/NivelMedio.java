@@ -16,6 +16,6 @@ public class NivelMedio extends Nivel {
 
 	@Override
 	public void generarEnemigos() {
-		oleada(0.3, 0.7, 0.1, 500, 580);
+		oleada(0.2, 0.6, 0.2, 500, 580);
 	}
 }

@@ -18,7 +18,7 @@ import motor.util.Vector2D;
 public class Bala extends SpriteMovible {
 
     private static final double DURACION_MAX = 2.0;      // segundos antes de desaparecer
-	private static final int OFFSET_ANGULAR = 90; // DESFACE EN GRADOS DE LAS TEXTURAS
+	  private static final int OFFSET_ANGULAR = 90; // DESFACE EN GRADOS DE LAS TEXTURAS
 
     private double tiempoDeVida; // CRONOMETRO
 

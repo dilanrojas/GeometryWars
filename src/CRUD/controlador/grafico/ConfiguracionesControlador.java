@@ -9,6 +9,7 @@ import CRUD.modelo.Configuraciones;
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
 import CRUD.vista.grafico.ConfiguracionesVista;
+import juego.Config;
 
 /**
  * @author Dilan Rojas

@@ -1,5 +1,7 @@
 package juego;
 
+import CRUD.modelo.Usuario;
+
 /**
  * @author Dilan Rojas
  * @date Nov 18, 2025
@@ -15,6 +17,7 @@ public class Config {
     // Configuraciones de usuario
     public static double VELOCIDAD = 1;
     public static double DIFICULTAD = 1;
+    public static int VIDAS;
     
     // TODO --> Arma & Vidas
 }

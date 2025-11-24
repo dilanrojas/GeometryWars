@@ -25,6 +25,8 @@ public class Nave extends SpriteMovible {
 	private static final double FACTOR_ACELERACION = 2; // multiplicador de empuje
 	private static final double VELOCIDAD_BALA = 600 * Config.VELOCIDAD; // píxeles/segundo
 	private static final int OFFSET_ANGULAR = 90; // Ajuste de la imagen
+	
+	private int vidas;
 
 	private int direccionActual;// 0° = derecha
 
@@ -35,6 +37,8 @@ public class Nave extends SpriteMovible {
 
 	public Nave(BufferedImage textura, Vector2D posicion, Controles controles) {
 		super(textura, posicion);
+		
+		this.vidas = Config.VIDAS;
 
 		fireDerecho = new Sprite(Assets.textura_fire, posicion);
 		fireIzquierdo = new Sprite(Assets.textura_fire, posicion);
@@ -162,6 +166,9 @@ public class Nave extends SpriteMovible {
 
 	@Override
 	public void alColisionarCon(IColisionable otro) {
+		if (vidas > 0) {
+			// TODO;
+		}
 		super.destruir();
 		// super.alColisionarCon(otro);
 	}

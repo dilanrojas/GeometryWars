@@ -62,7 +62,7 @@ public class IngresarJuegoControlador implements ActionListener {
 			menuJuegoControlador = new MenuJuegoControlador(modelo, menuJuegoVista, usuarioIngresado);
 			
 			// Implementar configuaciones del usuario
-			switch (usuarioIngresado.getConfiguraciones().getVelocidad()) {
+	    	switch (usuarioIngresado.getConfiguraciones().getVelocidad()) {
 			case 1:
 				Config.VELOCIDAD = 1;
 				break;

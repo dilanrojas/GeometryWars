@@ -4,7 +4,7 @@
             "vidas": 3,
             "arma": 1,
             "velocidad": 1,
-            "dificultad": 1
+            "dificultad": 3
         },
         "puntaje": 132,
         "tiempoJugado": 37,
@@ -31,48 +31,48 @@
     },
     {
         "configuraciones": {
-            "vidas": 7,
+            "vidas": 3,
             "arma": 1,
-            "velocidad": 2,
+            "velocidad": 3,
+            "dificultad": 1
+        },
+        "puntaje": 41,
+        "tiempoJugado": 45,
+        "nickname": "joswed",
+        "contrasena": "josue00",
+        "ID": 3,
+        "nombre": "Dilan Rojas",
+        "nivel": 10
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 3,
             "dificultad": 1
         },
         "puntaje": 34,
         "tiempoJugado": 0,
         "nickname": "marco18",
         "contrasena": "mk_2025",
-        "ID": 3,
+        "ID": 4,
         "nombre": "Marco",
         "nivel": 1
     },
     {
         "configuraciones": {
-            "vidas": 10,
+            "vidas": 3,
             "arma": 1,
-            "velocidad": 2,
-            "dificultad": 1
+            "velocidad": 3,
+            "dificultad": 3
         },
         "puntaje": 24,
         "tiempoJugado": 0,
         "nickname": "ana10",
         "contrasena": "ag120",
-        "ID": 4,
+        "ID": 5,
         "nombre": "Ana",
         "nivel": 3
-    },
-    {
-        "configuraciones": {
-            "vidas": 3,
-            "arma": 1,
-            "velocidad": 1,
-            "dificultad": 1
-        },
-        "puntaje": 20,
-        "tiempoJugado": 0,
-        "nickname": "joswed",
-        "contrasena": "josue00",
-        "ID": 5,
-        "nombre": "Dilan Rojas",
-        "nivel": 10
     },
     {
         "configuraciones": {

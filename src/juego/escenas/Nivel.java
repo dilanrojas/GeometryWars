@@ -54,7 +54,7 @@ public abstract class Nivel extends Scene {
 
 		this.tiempoEntreOrdas = tiempoEntreOrdas;
 		this.enemigosPorOleada = (int) Math.round(enemigosPorOleada * Config.DIFICULTAD);
-		this.enemigosParaGanar = (int) Math.round(enemigosPorOleada * Config.DIFICULTAD);
+		this.enemigosParaGanar = (int) Math.round(enemigosParaGanar * Config.DIFICULTAD);
 		
 		Assets.reproducirMusicaFondo();
 	}
@@ -162,7 +162,7 @@ public abstract class Nivel extends Scene {
 		// Cálculo de cantidades por tipo
 		int cantidadFaciles  = (int) (enemigosPorOleada * porcentajeFaciles);
 		int cantidadMedios   = (int) (enemigosPorOleada * porcentajeMedios);
-		int cantidadDificiles = enemigosPorOleada - cantidadFaciles - cantidadMedios;
+		int cantidadDificiles = (int) (enemigosPorOleada * porcentajeDificiles);
 
 		Vector2D posJugador = jugador.getTransform().getPosicion();
 

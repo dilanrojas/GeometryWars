@@ -11,7 +11,7 @@ import juego.escenas.dificultadNiveles.NivelDificil;
 
 public class Nivel9 extends NivelDificil {
 	public Nivel9() {
-		super(20, 30);
+		super(24, 30);
 		super.setNivelActual(9);
 	}
 }
