@@ -150,16 +150,8 @@ public class Nave extends SpriteMovible {
 	 * Dispara una bala desde la punta de la nave si la nave
 	 */
 	public Bala disparar() {
-		// PENDIENTE CALCULAR LA DISTANCIA A LA PUNTA DE LA NAVE Y NO DESDE EL CENTRO
-		Vector2D centroNave = getPosicion().add(getCentro());
-
-		Vector2D centroNavePunta = centroNave.add(1);
-
-		// Posición de la bala desde el centro
-		System.out.println(centroNave);
-		System.out.println(centroNavePunta + "\n");
-		Vector2D posicionBala = centroNave;
-
+		
+		Vector2D posicionBala = dispararBala();
 		// Crear la bala
 		return new Bala(posicionBala, VELOCIDAD_BALA, direccionActual);
 	}
@@ -198,5 +190,22 @@ public class Nave extends SpriteMovible {
 
 	    fireIzquierdo.posicionarloA(topRightFire);
 	    fireIzquierdo.rotarloA(direccionActual);
+	}
+
+	private Vector2D dispararBala() {
+		Vector2D centroNave = getPosicion().add(getCentro());
+		
+		Vector2D direccion = Vector2D.getVectorDelAngulo(direccionActual);  // hacia adelante
+	    Vector2D haciaAtras = direccion.scale(-1);                          // hacia atrás
+	    //Vector2D lateral = new Vector2D(direccion.getY(), -direccion.getX()); // perpendicular (derecha)
+	    
+	    double distanciaDetras = -22; 
+	    
+	    Vector2D offsetDerecha = haciaAtras.scale(distanciaDetras).add(new Vector2D(0,-13.5));//lateral.scale(+0));
+	    
+	    Vector2D centroFireMundial = centroNave.add(offsetDerecha);
+	    
+	    return centroFireMundial;
+	    
 	}
 }
