@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import juego.Assets;
+import juego.Config;
 import motor.entidades.Sprite;
 import motor.entidades.SpriteMovible;
 import motor.entidades.interfaces.IColisionable;
@@ -19,10 +20,10 @@ import motor.util.Vector2D;
 
 public class Nave extends SpriteMovible {
 
-	private static final int FACTOR_ROTACION = 5; // grados por frame
-	private static final double VELOCIDAD_MAX = 300; // píxeles/segundo
+	private static final int FACTOR_ROTACION = (int) (5 * Config.VELOCIDAD); // grados por frame
+	private static final double VELOCIDAD_MAX = 300 * Config.VELOCIDAD; // píxeles/segundo
 	private static final double FACTOR_ACELERACION = 2; // multiplicador de empuje
-	private static final double VELOCIDAD_BALA = 600; // píxeles/segundo
+	private static final double VELOCIDAD_BALA = 600 * Config.VELOCIDAD; // píxeles/segundo
 	private static final int OFFSET_ANGULAR = 90; // Ajuste de la imagen
 
 	private int direccionActual;// 0° = derecha
@@ -56,7 +57,6 @@ public class Nave extends SpriteMovible {
 		fireIzquierdo.setOffset_angular(OFFSET_ANGULAR);
 		
 		isAcelerando = false;
-
 	}
 
 	public Sprite getFireDerecho() {
@@ -135,7 +135,6 @@ public class Nave extends SpriteMovible {
 		}
 		
 		super.dibujar(g);
-
 	}
 
 	public int getDireccionActual() {
@@ -152,9 +151,14 @@ public class Nave extends SpriteMovible {
 	 */
 	public Bala disparar() {
 		// PENDIENTE CALCULAR LA DISTANCIA A LA PUNTA DE LA NAVE Y NO DESDE EL CENTRO
+		Vector2D centroNave = getPosicion().add(getCentro());
+
+		Vector2D centroNavePunta = centroNave.add(1);
 
 		// Posición de la bala desde el centro
-		Vector2D posicionBala = getPosicion().add(getCentro());
+		System.out.println(centroNave);
+		System.out.println(centroNavePunta + "\n");
+		Vector2D posicionBala = centroNave;
 
 		// Crear la bala
 		return new Bala(posicionBala, VELOCIDAD_BALA, direccionActual);

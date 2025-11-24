@@ -32,27 +32,32 @@ public class MenuJuegoVista extends JFrame {
 	public MenuJuegoVista() {
 		initComponents();
 		setTitle("Menu de juego");
-		setSize(400, 350);
+		setSize(400, 400);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		
+		JButton btnConfiguraciones = new JButton("Configuraciones");
+		btnConfiguraciones.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnConfiguraciones.setBounds(107, 186, 146, 37);
+		getContentPane().add(btnConfiguraciones);
 		setVisible(true);
 	}
 
 	private void initComponents() {
 		btnJugar = new JButton("Jugar");
 		btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnJugar.setBounds(124, 88, 122, 37);
+		btnJugar.setBounds(107, 88, 146, 37);
 		getContentPane().add(btnJugar);
 
 		btnEstadisticas = new JButton("Estadisticas");
 		btnEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnEstadisticas.setBounds(124, 147, 122, 37);
+		btnEstadisticas.setBounds(107, 137, 146, 37);
 		getContentPane().add(btnEstadisticas);
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSalir.setBounds(124, 203, 122, 37);
+		btnSalir.setBounds(107, 235, 146, 37);
 		getContentPane().add(btnSalir);
 
 		lblMenu = new JLabel("Menu del jugador");
@@ -90,5 +95,4 @@ public class MenuJuegoVista extends JFrame {
 	public void cerrar() {
 		dispose();
 	}
-
 }

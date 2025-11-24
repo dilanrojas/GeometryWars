@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
+import juego.Config;
 import vista.BienvenidaVista;
 import vista.IngresarJuegoVista;
 import vista.MenuJuegoVista;
@@ -59,6 +60,21 @@ public class IngresarJuegoControlador implements ActionListener {
 			
 			menuJuegoVista = new MenuJuegoVista();
 			menuJuegoControlador = new MenuJuegoControlador(modelo, menuJuegoVista, usuarioIngresado);
+			
+			switch (usuarioIngresado.getConfiguraciones().getVelocidad()) {
+			case 1:
+				Config.VELOCIDAD = 1;
+				break;
+			case 2:
+				Config.VELOCIDAD = 1.4;
+				break;
+			case 3:
+				Config.VELOCIDAD = 1.7;
+				break;
+			default:
+				Config.VELOCIDAD = 1;
+			}
+			
 			vista.cerrar();
 		} else if (source == vista.getBtnCancelar()) {
 			volver();

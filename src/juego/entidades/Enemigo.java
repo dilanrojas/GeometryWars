@@ -3,6 +3,7 @@ package juego.entidades;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import juego.Config;
 import motor.entidades.SpriteMovible;
 import motor.entidades.interfaces.IColisionable;
 import motor.util.Vector2D;
@@ -35,9 +36,9 @@ public abstract class Enemigo extends SpriteMovible {
 		super(textura, posicion);
 
 		this.target = target;
-		this.velocidad = velocidad;
-		this.aceleracion = aceleracion;
-		this.desviacion = desviacion;
+		this.velocidad = velocidad * Config.VELOCIDAD;
+		this.aceleracion = aceleracion * Config.VELOCIDAD;
+		this.desviacion = desviacion * Config.VELOCIDAD;
 
 		direccionActual = Vector2D.ZERO;
 	}
