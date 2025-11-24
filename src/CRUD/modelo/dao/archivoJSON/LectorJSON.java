@@ -66,6 +66,10 @@ public class LectorJSON {
 						elemento.getInt("ID"),
 						configuraciones
 						);
+				
+				if (elemento.has("tiempoJugado")) {
+   					 usuario.setTiempoJugado(elemento.getInt("tiempoJugado"));
+				}
 
 				dataset.agregar(usuario);
 			}
