@@ -21,6 +21,7 @@ public class MenuJuegoVista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblMenu;
 	private JButton btnEstadisticas;
+	private JButton btnConfiguraciones;
 	private JButton btnSalir;
 	private JButton btnJugar;
 	
@@ -36,11 +37,6 @@ public class MenuJuegoVista extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		
-		JButton btnConfiguraciones = new JButton("Configuraciones");
-		btnConfiguraciones.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnConfiguraciones.setBounds(107, 186, 146, 37);
-		getContentPane().add(btnConfiguraciones);
 		setVisible(true);
 	}
 
@@ -54,6 +50,11 @@ public class MenuJuegoVista extends JFrame {
 		btnEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEstadisticas.setBounds(107, 137, 146, 37);
 		getContentPane().add(btnEstadisticas);
+		
+		btnConfiguraciones = new JButton("Configuraciones");
+		btnConfiguraciones.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnConfiguraciones.setBounds(107, 186, 146, 37);
+		getContentPane().add(btnConfiguraciones);
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -70,6 +71,10 @@ public class MenuJuegoVista extends JFrame {
 	public JButton getBtnEstadisticas() {
 		return btnEstadisticas;
 	}
+	
+	public JButton getBtnConfiguraciones() {
+		return btnConfiguraciones;
+	}
 
 	public JButton getBtnSalir() {
 		return btnSalir;
@@ -83,6 +88,7 @@ public class MenuJuegoVista extends JFrame {
 	public void setEscuchadores(ActionListener escuchador) {
 		btnJugar.addActionListener(escuchador);
 		btnEstadisticas.addActionListener(escuchador);
+		btnConfiguraciones.addActionListener(escuchador);
 		btnSalir.addActionListener(escuchador);
 	}
 

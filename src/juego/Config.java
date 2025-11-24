@@ -14,7 +14,9 @@ public class Config {
     
     // Configuraciones de usuario
     public static double VELOCIDAD = 1;
-    public static int DIFICULTAD = 1;
+    public static double DIFICULTAD = 1;
+    
+    // TODO --> Arma & Vidas
 }
 
 

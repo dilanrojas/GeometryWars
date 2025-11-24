@@ -3,8 +3,10 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import CRUD.controlador.grafico.ConfiguracionesControlador;
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
+import CRUD.vista.grafico.ConfiguracionesVista;
 import vista.MenuJuegoVista;
 import vista.NivelesVista;
 
@@ -23,6 +25,9 @@ public class MenuJuegoControlador implements ActionListener {
 	private NivelesControlador nivelesControlador;
 	private Usuario usuarioIngresado;
 	
+	private ConfiguracionesVista configuracionesVista;
+	private ConfiguracionesControlador configuracionesControlador;
+	
 	// Constructor
 	public MenuJuegoControlador(IUsuarioDAO modelo, MenuJuegoVista vista, Usuario usuarioIngresado) {
 		this.modelo = modelo;
@@ -37,14 +42,29 @@ public class MenuJuegoControlador implements ActionListener {
 		Object source = e.getSource();
 		
 		if (source == vista.getBtnJugar()) {
-			nivelesVista = new NivelesVista();
-			nivelesControlador = new NivelesControlador(modelo, nivelesVista, usuarioIngresado);
-			vista.cerrar();
+			jugar();
 		} else if (source == vista.getBtnEstadisticas()) {
-			vista.mostrarMsj(usuarioIngresado.estadisticas());
+			estadisticas();
+		} else if (source == vista.getBtnConfiguraciones()) {
+			configuraciones();
 		} else if (source == vista.getBtnSalir()) {
 			vista.cerrar();
 		}
-		
+	}
+	
+	public void jugar() {
+		nivelesVista = new NivelesVista();
+		nivelesControlador = new NivelesControlador(modelo, nivelesVista, usuarioIngresado);
+		vista.cerrar();
+	}
+	
+	public void estadisticas() {
+		vista.mostrarMsj(usuarioIngresado.estadisticas());
+	}
+	
+	public void configuraciones() {
+		configuracionesVista = new ConfiguracionesVista();
+		configuracionesControlador = new ConfiguracionesControlador(modelo, configuracionesVista);
+		configuracionesControlador.mostrarDatos(usuarioIngresado);
 	}
 }

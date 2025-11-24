@@ -133,8 +133,7 @@ public class NivelesControlador implements ActionListener {
     				usuarioIngresado.getNivel() <= nivelAlcanzado) {
     			usuarioIngresado.setNivel(nivelAlcanzado + 1);
     		}
-    		usuarioIngresado.agregarNivelJugado(nivelAlcanzado);
-    		usuarioIngresado.agregarTiempoJugado(tiempoDelNivel);
+    		usuarioIngresado.setTiempoJugado(usuarioIngresado.getTiempoJugado() + tiempoDelNivel);
 
     		modelo.guardarDataset();
     		cargarNiveles();

@@ -22,12 +22,17 @@ public class Usuario {
 	private Configuraciones configuraciones;
 	private int tiempoJugado;
 
-	private int[] nivelesJugados = new int[10];
-	private int contadorNiveles = 0;
-
 	// Constructor
-	public Usuario(String nombre, String nickname, String contrasena, int nivel, int puntaje, int id,
-			Configuraciones configuraciones) {
+	public Usuario(
+		String nombre,
+		String nickname,
+		String contrasena,
+		int nivel,
+		int puntaje,
+		int id,
+		int tiempoJugado, 
+		Configuraciones configuraciones
+	) {
 		this.nombre = nombre;
 		this.nickname = nickname;
 		this.contrasena = contrasena;
@@ -35,6 +40,7 @@ public class Usuario {
 		this.puntaje = puntaje;
 		this.ID = id;
 		this.configuraciones = configuraciones;
+		this.tiempoJugado = tiempoJugado;
 	}
 
 	// Getters & Setters
@@ -89,10 +95,7 @@ public class Usuario {
 	public void setConfiguraciones(Configuraciones configuraciones) {
 		this.configuraciones = configuraciones;
 	}
-	public void agregarTiempoJugado(int segundos) {
-		tiempoJugado += segundos;
-	}
-
+	
 	public int getTiempoJugado() {
 		return tiempoJugado;
 	}
@@ -101,32 +104,30 @@ public class Usuario {
 		this.tiempoJugado = tiempoJugado;
 	}
 
-	// historial de niveles
-	public void agregarNivelJugado(int nivel) {
-		if (contadorNiveles < nivelesJugados.length) {
-			nivelesJugados[contadorNiveles++] = nivel;
-		}
-	}
-
-	public String getNivelesJugados() {
-		if (contadorNiveles == 0)
-			return "Ninguno";
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < contadorNiveles; i++) {
-			sb.append(nivelesJugados[i]);
-			if (i < contadorNiveles - 1)
-				sb.append(", ");
-		}
-		return sb.toString();
-	}
-
 	public String estadisticas() {
+		String estadisticaTiempo = "";
+		int tiempoEnMinutos = (int) Math.round(tiempoJugado / 60);
+		int tiempoEnHoras = (int) Math.round(tiempoJugado / 3600);
+		int tiempoEnDias = (int) Math.round(tiempoJugado / 86400);
+		
+		if (tiempoEnMinutos < 1) {
+			estadisticaTiempo = tiempoJugado + " segundos";
+			
+		} else if (tiempoEnMinutos >= 1 && tiempoEnHoras < 1) {
+			estadisticaTiempo = tiempoEnMinutos + " minuto(s)";
+			
+		} else if (tiempoEnHoras >= 1 && tiempoEnDias < 1) {
+			estadisticaTiempo = tiempoEnHoras + " hora(s)";
+			
+		} else if (tiempoEnDias >= 1) {
+			estadisticaTiempo = tiempoEnDias + " día(s)";
+		}
+		
 		return "Nombre: " + nombre +
 				"\nNickname: " + nickname +
 				"\nPuntaje máximo: " + puntaje + 
 				"\nNivel actual: "+ nivel + 
-				"\nNiveles jugados: " + getNivelesJugados() + 
-				"\nTiempo jugado: " + tiempoJugado + " segundos";
+				"\nTiempo jugado: " + estadisticaTiempo;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import controlador.NivelesControlador;
 import juego.Assets;
+import juego.Config;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
 import juego.entidades.Nave;
@@ -42,7 +43,7 @@ public abstract class Nivel extends Scene {
 	private int enemigosMuertos = 0;
 
 	private double contador = 0;
-	private int tiempoJugado;
+	private double tiempoJugado = 0;
 
 	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
@@ -52,8 +53,8 @@ public abstract class Nivel extends Scene {
 		this.balas = new ListaEntidades();
 
 		this.tiempoEntreOrdas = tiempoEntreOrdas;
-		this.enemigosPorOleada = enemigosPorOleada;
-		this.enemigosParaGanar = enemigosParaGanar;
+		this.enemigosPorOleada = (int) Math.round(enemigosPorOleada * Config.DIFICULTAD);
+		this.enemigosParaGanar = (int) Math.round(enemigosPorOleada * Config.DIFICULTAD);
 		
 		Assets.reproducirMusicaFondo();
 	}
@@ -127,13 +128,12 @@ public abstract class Nivel extends Scene {
 		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
 			JOptionPane.showMessageDialog(null, "Perdiste");
 			completado(false);
-			
 		}
 	}
 	
 
 	public void completado(boolean gano) {
-		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual, tiempoJugado);
+		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual, (int) Math.round(tiempoJugado));
 	}
 
 
@@ -281,7 +281,7 @@ public abstract class Nivel extends Scene {
 		return contador;
 	}
 
-	public int getTiempoJugado() {
+	public double getTiempoJugado() {
 		return tiempoJugado;
 	}
 

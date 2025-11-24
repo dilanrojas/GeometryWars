@@ -51,7 +51,7 @@ public class IngresarJuegoVista extends JFrame {
 		getContentPane().add(lblNickname);
 
 		tfNickname = new JTextField();
-		tfNickname.setText("prueba");
+		tfNickname.setText("davidcr");
 		tfNickname.setBackground(new Color(255, 255, 255));
 		tfNickname.setBounds(110, 106, 180, 30);
 		tfNickname.setHorizontalAlignment(SwingConstants.LEFT);
@@ -63,7 +63,7 @@ public class IngresarJuegoVista extends JFrame {
 		getContentPane().add(lblContrasena);
 
 		tfContrasena = new JTextField();
-		tfContrasena.setText("prueba");
+		tfContrasena.setText("dv_123");
 		tfContrasena.setBackground(new Color(255, 255, 255));
 		tfContrasena.setBounds(110, 176, 180, 30);
 		tfContrasena.setHorizontalAlignment(SwingConstants.LEFT);

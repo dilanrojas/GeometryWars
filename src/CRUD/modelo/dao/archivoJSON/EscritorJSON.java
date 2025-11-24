@@ -53,7 +53,6 @@ public class EscritorJSON {
 					configs_json.put("arma", configuraciones.getArma());
 					configs_json.put("dificultad", configuraciones.getDificultad());
 					configs_json.put("vidas", configuraciones.getVidas());
-
 					elemento_json.put("configuraciones", configs_json);
 				}
 				

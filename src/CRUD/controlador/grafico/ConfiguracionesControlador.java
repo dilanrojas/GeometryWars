@@ -33,7 +33,6 @@ public class ConfiguracionesControlador implements ActionListener, IMostrarDatos
 		vista.setEscuchadores(this);
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();

@@ -45,7 +45,7 @@ public class InsertarControlador implements ActionListener {
 
 			Usuario usuario = null;
 			try {
-				usuario = new Usuario(vista.getNombre(), vista.getNickname(), vista.getContrasena(), nivel, 0, 0, new Configuraciones());
+				usuario = new Usuario(vista.getNombre(), vista.getNickname(), vista.getContrasena(), nivel, 0, 0, 0, new Configuraciones());
 				modelo.agregar(usuario);
 				vista.mostrarMsj("Usuario agregado corractamente");
 				vista.cerrar();

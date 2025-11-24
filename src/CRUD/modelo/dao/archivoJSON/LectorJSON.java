@@ -64,6 +64,7 @@ public class LectorJSON {
 						elemento.getInt("nivel"),
 						elemento.getInt("puntaje"),
 						elemento.getInt("ID"),
+						elemento.getInt("tiempoJugado"),
 						configuraciones
 						);
 				
