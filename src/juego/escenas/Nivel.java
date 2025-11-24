@@ -15,6 +15,7 @@ import juego.entidades.enemigos.EnemigoFacil;
 import juego.entidades.enemigos.EnemigoMedio;
 import motor.Scene;
 import motor.entidades.ListaEntidades;
+import motor.entidades.Sprite;
 import motor.input.Key;
 import motor.util.Vector2D;
 
@@ -44,6 +45,8 @@ public abstract class Nivel extends Scene {
 
 	private double contador = 0;
 	private double tiempoJugado = 0;
+	
+	private Sprite fondo = new Sprite(Assets.textura_fondo, Vector2D.ZERO);
 
 	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
@@ -76,6 +79,7 @@ public abstract class Nivel extends Scene {
 
 	@Override
 	public void dibujar(Graphics g) {
+		fondo.dibujar(g);
 		if (jugador != null) jugador.dibujar(g);
 		if (balas != null) balas.dibujar(g);
 		if (listaEnemigos != null) listaEnemigos.dibujar(g);
