@@ -20,17 +20,14 @@ public class Usuario {
 	private int puntaje;
 	private int ID;
 	private Configuraciones configuraciones;
+	private int tiempoJugado;
+
+	private int[] nivelesJugados = new int[10];
+	private int contadorNiveles = 0;
 
 	// Constructor
-	public Usuario(
-		String nombre,
-		String nickname,
-		String contrasena,
-		int nivel,
-		int puntaje,
-		int id,
-		Configuraciones configuraciones
-	) {
+	public Usuario(String nombre, String nickname, String contrasena, int nivel, int puntaje, int id,
+			Configuraciones configuraciones) {
 		this.nombre = nombre;
 		this.nickname = nickname;
 		this.contrasena = contrasena;
@@ -80,11 +77,11 @@ public class Usuario {
 	public int getID() {
 		return ID;
 	}
-	
+
 	public void setID(int ID) {
 		this.ID = ID;
 	}
-	
+
 	public Configuraciones getConfiguraciones() {
 		return configuraciones;
 	}
@@ -92,12 +89,44 @@ public class Usuario {
 	public void setConfiguraciones(Configuraciones configuraciones) {
 		this.configuraciones = configuraciones;
 	}
-	
+	public void agregarTiempoJugado(int segundos) {
+		tiempoJugado += segundos;
+	}
+
+	public int getTiempoJugado() {
+		return tiempoJugado;
+	}
+
+	public void setTiempoJugado(int tiempoJugado) {
+		this.tiempoJugado = tiempoJugado;
+	}
+
+	// historial de niveles
+	public void agregarNivelJugado(int nivel) {
+		if (contadorNiveles < nivelesJugados.length) {
+			nivelesJugados[contadorNiveles++] = nivel;
+		}
+	}
+
+	public String getNivelesJugados() {
+		if (contadorNiveles == 0)
+			return "Ninguno";
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < contadorNiveles; i++) {
+			sb.append(nivelesJugados[i]);
+			if (i < contadorNiveles - 1)
+				sb.append(", ");
+		}
+		return sb.toString();
+	}
+
 	public String estadisticas() {
 		return "Nombre: " + nombre +
-			   "\nNickname: " + nickname +
-			   "\nPuntaje máximo: " + puntaje +
-			   "\nNivel actual: " + nivel;
+				"\nNickname: " + nickname +
+				"\nPuntaje máximo: " + puntaje + 
+				"\nNivel actual: "+ nivel + 
+				"\nNiveles jugados: " + getNivelesJugados() + 
+				"\nTiempo jugado: " + tiempoJugado + " segundos";
 	}
 
 	@Override

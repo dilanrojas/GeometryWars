@@ -63,6 +63,7 @@ public class EscritorJSON {
 				elemento_json.put("nivel", usuario.getNivel());
 				elemento_json.put("puntaje", usuario.getPuntaje());
 				elemento_json.put("ID", usuario.getID());
+				elemento_json.put("tiempoJugado", usuario.getTiempoJugado());
 
 				jsonArray.put(elemento_json);
 			}

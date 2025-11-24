@@ -125,24 +125,23 @@ public class NivelesControlador implements ActionListener {
         gameActual = new Game(nivel);
         gameLoopActual = new GameLoop(gameActual);
     }
-    
-    public void cerrarJuego(boolean gano, int puntajeObtenido, int nivelAlcanzado) {
+      public void cerrarJuego(boolean gano, int puntajeObtenido, int nivelAlcanzado, int tiempoDelNivel) {
     	if (gano) {
     		usuarioIngresado.setPuntaje(usuarioIngresado.getPuntaje() + puntajeObtenido);
     		if (usuarioIngresado.getNivel() != listaNiveles().length - 1 &&
-    			usuarioIngresado.getNivel() <= nivelAlcanzado
-    		) {
-    			usuarioIngresado.setNivel(nivelAlcanzado + 1);    		
+    				usuarioIngresado.getNivel() <= nivelAlcanzado) {
+    				usuarioIngresado.setNivel(nivelAlcanzado + 1);
     		}
-    		modelo.guardarDataset(); 
+    		usuarioIngresado.agregarNivelJugado(nivelAlcanzado);
+    		usuarioIngresado.agregarTiempoJugado(tiempoDelNivel);
+
+    		modelo.guardarDataset();
     		cargarNiveles();
     	}
-    	
     	Assets.detenerMusicaFondo();
-        if (gameActual != null) gameActual.destruir();
-        if (gameLoopActual != null) gameLoopActual.detener();
+    	if (gameActual != null) gameActual.destruir();
     }
-    
+	
     public Nivel[] listaNiveles() {
     	Nivel[] lista = {
     			new Nivel0(),

@@ -42,6 +42,7 @@ public abstract class Nivel extends Scene {
 	private int enemigosMuertos = 0;
 
 	private double contador = 0;
+	private int tiempoJugado;
 
 	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
@@ -68,6 +69,8 @@ public abstract class Nivel extends Scene {
 		controlarOleadas();
 		controlarEnemigos();
 		destruir();
+		
+		tiempoJugado += motor.GameLoop.deltaTimeSeconds;
 	}
 
 	@Override
@@ -128,9 +131,11 @@ public abstract class Nivel extends Scene {
 		}
 	}
 	
+
 	public void completado(boolean gano) {
-		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual);
+		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual, tiempoJugado);
 	}
+
 
 	// Generar origen (spawn) de enemigos en un radio determinado
 	private Vector2D generarSpawnAlejado(
@@ -274,6 +279,10 @@ public abstract class Nivel extends Scene {
 
 	public double getContador() {
 		return contador;
+	}
+
+	public int getTiempoJugado() {
+		return tiempoJugado;
 	}
 
 	public void setContador(double contador) {
