@@ -11,7 +11,7 @@ import juego.escenas.Nivel;
 
 public class NivelMedio extends Nivel {
 	public NivelMedio(int enemigosPorOleada, int enemigosParaGanar) {
-		super(8.0, enemigosPorOleada, enemigosParaGanar);
+		super(10.0, enemigosPorOleada, enemigosParaGanar);
 	}
 
 	@Override
