@@ -125,7 +125,8 @@ public class Usuario {
 				"\nNickname: " + nickname +
 				"\nPuntaje máximo: " + puntaje + 
 				"\nNivel actual: "+ nivel + 
-				"\nNiveles jugados: " + getNivelesJugados();
+				"\nNiveles jugados: " + getNivelesJugados() + 
+				"\nTiempo jugado: " + tiempoJugado + " segundos";
 	}
 
 	@Override
