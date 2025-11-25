@@ -115,15 +115,12 @@ public class NivelesControlador implements ActionListener {
     	return Assets.cargados();
     }
     
-    public void reproducirMusica() {
-    	Assets.reproducirMusicaFondo();
-    }
-    
     public void comenzarNivel(Scene nivel) {
         ((Nivel) nivel).setControlador(this);
         
         gameActual = new Game(nivel);
         gameLoopActual = new GameLoop(gameActual);
+        Assets.reproducirMusicaFondo();
     }
     
     public void cerrarJuego(boolean gano, int puntajeObtenido, int nivelAlcanzado, int tiempoDelNivel) {

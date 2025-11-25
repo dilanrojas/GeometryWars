@@ -16,6 +16,21 @@
     },
     {
         "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 168,
+        "tiempoJugado": 176,
+        "nickname": "joswed",
+        "contrasena": "josue00",
+        "ID": 3,
+        "nombre": "Dilan Rojas",
+        "nivel": 10
+    },
+    {
+        "configuraciones": {
             "vidas": 10,
             "arma": 1,
             "velocidad": 3,
@@ -27,21 +42,6 @@
         "contrasena": "fp*001",
         "ID": 2,
         "nombre": "Felipe",
-        "nivel": 10
-    },
-    {
-        "configuraciones": {
-            "vidas": 3,
-            "arma": 1,
-            "velocidad": 3,
-            "dificultad": 1
-        },
-        "puntaje": 51,
-        "tiempoJugado": 61,
-        "nickname": "joswed",
-        "contrasena": "josue00",
-        "ID": 3,
-        "nombre": "Dilan Rojas",
         "nivel": 10
     },
     {

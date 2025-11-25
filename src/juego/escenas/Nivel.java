@@ -58,8 +58,6 @@ public abstract class Nivel extends Scene {
 		this.tiempoEntreOrdas = tiempoEntreOrdas;
 		this.enemigosPorOleada = (int) Math.round(enemigosPorOleada * Config.DIFICULTAD);
 		this.enemigosParaGanar = (int) Math.round(enemigosParaGanar * Config.DIFICULTAD);
-		
-		Assets.reproducirMusicaFondo();
 	}
 
 	@Override

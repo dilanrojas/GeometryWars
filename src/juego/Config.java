@@ -10,8 +10,8 @@ import CRUD.modelo.Usuario;
  */
 
 public class Config {
-    public static final int WIDTH = 1366;
-    public static final int HEIGHT = 768;
+    public static final int WIDTH = 1920;
+    public static final int HEIGHT = 1080;
     public static final String TITLE = "Geometry Wars";
     
     // Configuraciones de usuario
