@@ -25,15 +25,11 @@ public class Nave extends SpriteMovible {
 	private static final double FACTOR_ACELERACION = 2; // multiplicador de empuje
 	private static final double VELOCIDAD_BALA = 600 * Config.VELOCIDAD; // píxeles/segundo
 	private static final int OFFSET_ANGULAR = 90; // Ajuste de la imagen
-	
-	private int vidas;
-
-	private int direccionActual;// 0° = derecha
-
 	private Controles controles;
-
+	private int direccionActual;
 	private Sprite fireDerecho, fireIzquierdo;
-	private boolean isAcelerando;
+	private boolean isAcelerando;	
+	private int vidas;
 
 	public Nave(BufferedImage textura, Vector2D posicion, Controles controles) {
 		super(textura, posicion);
@@ -61,6 +57,59 @@ public class Nave extends SpriteMovible {
 		fireIzquierdo.setOffset_angular(OFFSET_ANGULAR);
 		
 		isAcelerando = false;
+	}
+	
+	@Override
+	public void actualizar() {
+		// === CONTROL DE ROTACIÓN ===
+		if (InputKeyboard.isDown(controles.giroDerecha)) {
+			rotarDerecha();
+		}
+
+		if (InputKeyboard.isDown(controles.giroIzquierda)) {
+			rotarIzquierda();
+		}
+
+		// === CONTROL DE ACELERACIÓN / FRICCIÓN ===
+		if (InputKeyboard.isDown(controles.acelerar)) {
+			acelerar();
+		} else {
+			frenar();
+		}
+
+		// === LIMITAR VELOCIDAD ===
+		getMovement().limitarVelocidad(0, VELOCIDAD_MAX);
+
+		// === MOVER ===
+		getMovement().mover(transform, FACTOR_ACELERACION);
+		// actualizarFire();
+		super.actualizar(); // IMPORTANTE ACTUALIZAMOS TODOS LOS ATRIBUTOS DE LA SUPER CLASE
+
+		encenderPropulsion();
+	}
+	
+	@Override
+	public void dibujar(Graphics g) {
+		if (isAcelerando) {
+			fireDerecho.dibujar(g);
+			fireIzquierdo.dibujar(g);
+		}
+		
+		super.dibujar(g);
+	}
+	
+	@Override
+	public void destruir() {
+		super.destruir();
+	}
+	
+	@Override
+	public void alColisionarCon(IColisionable otro) {
+		if (vidas > 0) {
+			return;
+		} else {
+			super.destruir();
+		}
 	}
 
 	public Sprite getFireDerecho() {
@@ -103,46 +152,16 @@ public class Nave extends SpriteMovible {
 		getMovement().detener();
 	}
 
-	public void actualizar() {
-		// === CONTROL DE ROTACIÓN ===
-		if (InputKeyboard.isDown(controles.giroDerecha)) {
-			rotarDerecha();
-		}
-
-		if (InputKeyboard.isDown(controles.giroIzquierda)) {
-			rotarIzquierda();
-		}
-
-		// === CONTROL DE ACELERACIÓN / FRICCIÓN ===
-		if (InputKeyboard.isDown(controles.acelerar)) {
-			acelerar();
-		} else {
-			frenar();
-		}
-
-		// === LIMITAR VELOCIDAD ===
-		getMovement().limitarVelocidad(0, VELOCIDAD_MAX);
-
-		// === MOVER ===
-		getMovement().mover(transform, FACTOR_ACELERACION);
-		// actualizarFire();
-		super.actualizar(); // IMPORTANTE ACTUALIZAMOS TODOS LOS ATRIBUTOS DE LA SUPER CLASE
-
-		encenderPropulsion();
-	}
-
-	@Override
-	public void dibujar(Graphics g) {
-		if (isAcelerando) {
-			fireDerecho.dibujar(g);
-			fireIzquierdo.dibujar(g);
-		}
-		
-		super.dibujar(g);
-	}
-
 	public int getDireccionActual() {
 		return direccionActual;
+	}
+	
+	public int getVidas() {
+		return vidas;
+	}
+	
+	public void setVidas(int vidas) {
+		this.vidas = vidas;
 	}
 
 	/** Cuando recibe un impacto */
@@ -163,16 +182,6 @@ public class Nave extends SpriteMovible {
 	public boolean quiereDisparar() {
 		return InputKeyboard.isKeyPressed(controles.disparar);
 	}
-
-	@Override
-	public void alColisionarCon(IColisionable otro) {
-		if (vidas > 0) {
-			// TODO;
-		}
-		super.destruir();
-		// super.alColisionarCon(otro);
-	}
-
 
 	private void encenderPropulsion() {
 	    Vector2D centroNave = getPosicion().add(getCentro());

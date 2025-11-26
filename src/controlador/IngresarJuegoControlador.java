@@ -90,7 +90,10 @@ public class IngresarJuegoControlador implements ActionListener {
 			default:
 			}
 			
+			Config.VIDAS = usuarioIngresado.getConfiguraciones().getVidas();
+			
 			vista.cerrar();
+			
 		} else if (source == vista.getBtnCancelar()) {
 			volver();
 		}

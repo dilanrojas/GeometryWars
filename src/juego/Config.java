@@ -1,7 +1,5 @@
 package juego;
 
-import CRUD.modelo.Usuario;
-
 /**
  * @author Dilan Rojas
  * @date Nov 18, 2025
@@ -10,16 +8,16 @@ import CRUD.modelo.Usuario;
  */
 
 public class Config {
+	// Configuraciones generales
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
     public static final String TITLE = "Geometry Wars";
     
-    // Configuraciones de usuario
+    // Configuraciones por defecto
     public static double VELOCIDAD = 1;
     public static double DIFICULTAD = 1;
-    public static int VIDAS;
-    
-    // TODO --> Arma & Vidas
+    public static int VIDAS = 3;
+    public static int arma = 1;
 }
 
 

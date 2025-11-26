@@ -4,15 +4,15 @@
             "vidas": 3,
             "arma": 1,
             "velocidad": 1,
-            "dificultad": 3
+            "dificultad": 1
         },
-        "puntaje": 132,
-        "tiempoJugado": 37,
-        "nickname": "davidcr",
-        "contrasena": "dv_123",
+        "puntaje": 178,
+        "tiempoJugado": 202,
+        "nickname": "joswed",
+        "contrasena": "josue00",
         "ID": 1,
-        "nombre": "David",
-        "nivel": 8
+        "nombre": "Dilan Rojas",
+        "nivel": 10
     },
     {
         "configuraciones": {
@@ -21,13 +21,13 @@
             "velocidad": 1,
             "dificultad": 1
         },
-        "puntaje": 168,
-        "tiempoJugado": 176,
-        "nickname": "joswed",
-        "contrasena": "josue00",
-        "ID": 3,
-        "nombre": "Dilan Rojas",
-        "nivel": 10
+        "puntaje": 132,
+        "tiempoJugado": 37,
+        "nickname": "davidcr",
+        "contrasena": "dv_123",
+        "ID": 2,
+        "nombre": "David",
+        "nivel": 8
     },
     {
         "configuraciones": {
@@ -40,7 +40,7 @@
         "tiempoJugado": 0,
         "nickname": "felipe",
         "contrasena": "fp*001",
-        "ID": 2,
+        "ID": 3,
         "nombre": "Felipe",
         "nivel": 10
     },

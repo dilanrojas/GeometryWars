@@ -48,15 +48,16 @@ public abstract class Nivel extends Scene {
 	private double contador = 0;
 	private double tiempoJugado = 0;
 	
-	private Sprite fondo = new Sprite(Assets.textura_fondo, Vector2D.ZERO);
+	private Sprite fondo;
 
 	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
 		this.administrador = new AdministradorDeColisiones();
 		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
-		this.jugador = new Nave(Assets.textura_nave, new Vector2D(200, 200), controles);
+		this.jugador = new Nave(Assets.textura_nave, new Vector2D((Config.WIDTH / 2) - (Assets.textura_nave.getWidth() / 2), (Config.HEIGHT / 2) - (Assets.textura_nave.getHeight() / 2)), controles);
 		this.balas = new ListaEntidades();
-
+		this.fondo = new Sprite(Assets.textura_fondo, Vector2D.ZERO);
+		
 		this.tiempoEntreOrdas = tiempoEntreOrdas;
 		this.enemigosPorOleada = (int) Math.round(enemigosPorOleada * Config.DIFICULTAD);
 		this.enemigosParaGanar = (int) Math.round(enemigosParaGanar * Config.DIFICULTAD);
@@ -79,16 +80,15 @@ public abstract class Nivel extends Scene {
 
 	@Override
 	public void dibujar(Graphics g) {
-		fondo.dibujar(g);
-		
+		fondo.dibujar(g);		
+		if (jugador != null) jugador.dibujar(g);
+		if (balas != null) balas.dibujar(g);
+		if (listaEnemigos != null) listaEnemigos.dibujar(g);
 		g.setFont(new Font("Arial", Font.BOLD, 26));
 		g.setColor(Color.CYAN);
 	    g.drawString("Tiempo: " + (int) tiempoJugado, 20, 30);
 	    g.drawString("Kills: " + enemigosMuertos, 20, 60);
-		
-		if (jugador != null) jugador.dibujar(g);
-		if (balas != null) balas.dibujar(g);
-		if (listaEnemigos != null) listaEnemigos.dibujar(g);
+	    if (jugador != null) g.drawString("Vidas: " + jugador.getVidas(), 20, 90);
 	}
 
 	@Override
@@ -136,8 +136,13 @@ public abstract class Nivel extends Scene {
 
 		// Jugador --> Enemigos
 		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
-			JOptionPane.showMessageDialog(null, "Perdiste");
-			completado(false);
+			if (jugador.getVidas() > 0) {
+				jugador.setVidas(jugador.getVidas() - 1);
+				return;
+			} else {
+				JOptionPane.showMessageDialog(null, "Perdiste");
+				completado(false);				
+			}
 		}
 	}
 	
