@@ -1,13 +1,13 @@
 {"usuarios": [
     {
         "configuraciones": {
-            "vidas": 3,
+            "vidas": 10,
             "arma": 1,
-            "velocidad": 3,
+            "velocidad": 1,
             "dificultad": 1
         },
-        "puntaje": 343,
-        "tiempoJugado": 440,
+        "puntaje": 451,
+        "tiempoJugado": 503,
         "nickname": "joswed",
         "contrasena": "josue00",
         "ID": 1,

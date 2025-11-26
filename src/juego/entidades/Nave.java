@@ -116,8 +116,11 @@ public class Nave extends SpriteMovible {
 
 		// === MOVER ===
 		getMovement().mover(transform, FACTOR_ACELERACION);
-		// actualizarFire();
-		super.actualizar(); // IMPORTANTE ACTUALIZAMOS TODOS LOS ATRIBUTOS DE LA SUPER CLASE
+		
+	    // === EVITAR QUE LA NAVE SE SALGA DE LA PANTALLA ===
+	    limites();
+		
+		super.actualizar();
 
 		encenderPropulsion();
 	}
@@ -152,8 +155,54 @@ public class Nave extends SpriteMovible {
 	    tiempoParpadeo = 0;
 	    tiempoTotalParpadeo = duracionSeg;
 	}
+	
+	public void limites() {
 
+	    double x = getPosicion().getX();
+	    double y = getPosicion().getY();
 
+	    double ancho = getWidth();
+	    double alto = getHeight();
+
+	    Vector2D vel = getMovement().getVelocidadVectorial();
+
+	    boolean tocandoBorde = false;
+
+	    // Borde Izquierdo
+	    if (x < 0) {
+	        x = 0;
+	        vel = new Vector2D(Math.max(0, vel.getX()), vel.getY());
+	        tocandoBorde = true;
+	    }
+	    // Border derecho
+	    else if (x + ancho > Config.WIDTH) {
+	        x = Config.WIDTH - ancho;
+	        vel = new Vector2D(Math.min(0, vel.getX()), vel.getY());
+	        tocandoBorde = true;
+	    }
+
+	    // Border superior
+	    if (y < 0) {
+	        y = 0;
+	        vel = new Vector2D(vel.getX(), Math.max(0, vel.getY()));
+	        tocandoBorde = true;
+	    }
+	    
+	    // Borde inferior
+	    else if (y + alto > Config.HEIGHT) {
+	        y = Config.HEIGHT - alto;
+	        vel = new Vector2D(vel.getX(), Math.min(0, vel.getY()));
+	        tocandoBorde = true;
+	    }
+
+	    if (tocandoBorde) {
+	        getMovement().setVelocidadVectorial(vel);;
+	    }
+
+	    posicionarloA(new Vector2D(x, y));
+	}
+
+	
 	public Sprite getFireDerecho() {
 		return fireDerecho;
 	}
