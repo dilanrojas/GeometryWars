@@ -16,7 +16,8 @@
 - ~~Buscar los assets~~ **(Dilan)**
 - ~~Crear un nivel como base~~ **(Ana)**
 - ~~Crear los demás niveles~~ **(Ana)**
-- Cargar e implementar configuraciones en el juego (usuariosData) **(Dilan)**
-- Configurar las dificultades (Falta implementarlo con los ajustes) **(Dilan)**
-- Configurar armas (automática y ráfagas) (Sebas)
-- Configurar vidas extra (3, 5, 7 y 10)
+- ~~Cargar e implementar configuraciones en el juego (usuariosData)~~ **(Dilan)**
+- ~~Configurar las dificultades (Falta implementarlo con los ajustes)~~ **(Dilan)**
+- ~~Configurar armas (subfusil y escopeta)~~ (Sebas)
+- ~~Configurar vidas extra (3, 5, 7 y 10)~~
+- ~~Adjuntar entregable~~
