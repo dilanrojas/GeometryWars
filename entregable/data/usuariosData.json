@@ -1,0 +1,197 @@
+{"usuarios": [
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 132,
+        "tiempoJugado": 37,
+        "nickname": "davidcr",
+        "contrasena": "dv_123",
+        "ID": 1,
+        "nombre": "David",
+        "nivel": 8
+    },
+    {
+        "configuraciones": {
+            "vidas": 10,
+            "arma": 1,
+            "velocidad": 3,
+            "dificultad": 1
+        },
+        "puntaje": 94,
+        "tiempoJugado": 0,
+        "nickname": "felipe",
+        "contrasena": "fp*001",
+        "ID": 2,
+        "nombre": "Felipe",
+        "nivel": 10
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 3,
+            "dificultad": 1
+        },
+        "puntaje": 34,
+        "tiempoJugado": 0,
+        "nickname": "marco18",
+        "contrasena": "mk_2025",
+        "ID": 3,
+        "nombre": "Marco",
+        "nivel": 1
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 3,
+            "dificultad": 3
+        },
+        "puntaje": 24,
+        "tiempoJugado": 0,
+        "nickname": "ana10",
+        "contrasena": "ag120",
+        "ID": 4,
+        "nombre": "Ana",
+        "nivel": 3
+    },
+    {
+        "configuraciones": {
+            "vidas": 7,
+            "arma": 2,
+            "velocidad": 1,
+            "dificultad": 3
+        },
+        "puntaje": 17,
+        "tiempoJugado": 0,
+        "nickname": "maria20",
+        "contrasena": "mr_777",
+        "ID": 5,
+        "nombre": "María",
+        "nivel": 0
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 2,
+            "velocidad": 3,
+            "dificultad": 3
+        },
+        "puntaje": 4,
+        "tiempoJugado": 0,
+        "nickname": "lucia9",
+        "contrasena": "lc*99",
+        "ID": 6,
+        "nombre": "Lucía",
+        "nivel": 4
+    },
+    {
+        "configuraciones": {
+            "vidas": 5,
+            "arma": 1,
+            "velocidad": 3,
+            "dificultad": 1
+        },
+        "puntaje": 3,
+        "tiempoJugado": 0,
+        "nickname": "karla",
+        "contrasena": "krl_88",
+        "ID": 7,
+        "nombre": "Karla",
+        "nivel": 5
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 3,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 5,
+        "tiempoJugado": 7,
+        "nickname": "joswed",
+        "contrasena": "josue00",
+        "ID": 8,
+        "nombre": "Dilan Rojas",
+        "nivel": 1
+    },
+    {
+        "configuraciones": {
+            "vidas": 5,
+            "arma": 2,
+            "velocidad": 1,
+            "dificultad": 2
+        },
+        "puntaje": 0,
+        "tiempoJugado": 0,
+        "nickname": "sebas",
+        "contrasena": "Xuz{oo7",
+        "ID": 9,
+        "nombre": "Sebastián",
+        "nivel": 0
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 2,
+            "velocidad": 2,
+            "dificultad": 2
+        },
+        "puntaje": 0,
+        "tiempoJugado": 0,
+        "nickname": "jorge",
+        "contrasena": "jg2025",
+        "ID": 10,
+        "nombre": "Jorge",
+        "nivel": 1
+    },
+    {
+        "configuraciones": {
+            "vidas": 5,
+            "arma": 2,
+            "velocidad": 2,
+            "dificultad": 2
+        },
+        "puntaje": 0,
+        "tiempoJugado": 0,
+        "nickname": "sofiaj",
+        "contrasena": "sfj123",
+        "ID": 11,
+        "nombre": "Sofía",
+        "nivel": 2
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 0,
+        "tiempoJugado": 0,
+        "nickname": "andres",
+        "contrasena": "and_49",
+        "ID": 12,
+        "nombre": "Andrés",
+        "nivel": 0
+    },
+    {
+        "configuraciones": {
+            "vidas": 7,
+            "arma": 2,
+            "velocidad": 2,
+            "dificultad": 3
+        },
+        "puntaje": 0,
+        "tiempoJugado": 0,
+        "nickname": "paola",
+        "contrasena": "pl092",
+        "ID": 13,
+        "nombre": "Paola",
+        "nivel": 4
+    }
+]}

@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="jar/json-20250517.jar"/>
-	<classpathentry kind="lib" path="jar/motor_jar.jar"/>
+	<classpathentry exported="true" kind="lib" path="jar/json-20250517.jar"/>
+	<classpathentry exported="true" kind="lib" path="jar/motor_jar.jar"/>
 	<classpathentry kind="src" path="misAssets"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
