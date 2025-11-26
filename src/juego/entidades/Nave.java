@@ -21,8 +21,9 @@ import motor.util.Vector2D;
 public class Nave extends SpriteMovible {
 
 	private static final int FACTOR_ROTACION = (int) (5 * Config.VELOCIDAD); // grados por frame
+	private static final double FACTOR_VELOCIDAD = 600 * Config.VELOCIDAD;
 	private static final double VELOCIDAD_MAX = 300 * Config.VELOCIDAD; // píxeles/segundo
-	private static final double FACTOR_ACELERACION = 2; // multiplicador de empuje
+	private static final double FACTOR_ACELERACION = 1; // multiplicador de empuje
 	private static final double VELOCIDAD_BALA = 600 * Config.VELOCIDAD; // píxeles/segundo
 	private static final int OFFSET_ANGULAR = 90; // Ajuste de la imagen
 	private Controles controles;
@@ -50,8 +51,8 @@ public class Nave extends SpriteMovible {
 		setOffset_angular(OFFSET_ANGULAR);
 
 		// Configurar física y movimiento
-		getPhysics().setAceleracion(300); // px/s^2
-		getPhysics().setFriccion(0.98); // pierde 2% por frame
+		getPhysics().setAceleracion(FACTOR_VELOCIDAD);
+		getPhysics().setFriccion(0.88);
 
 		escalarloA(0.7); // HACEMOS LA NAVE MAS PEQUENA
 
