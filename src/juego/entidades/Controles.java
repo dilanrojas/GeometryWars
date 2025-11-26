@@ -9,18 +9,12 @@ package juego.entidades;
 
 public class Controles {
     public final int acelerar;
-    public final int giroIzquierda;
-    public final int giroDerecha;
     public final int disparar;
     
-	public Controles(int acelerar, int giroIzquierda, int giroDerecha, int disparar) {
+	public Controles(int acelerar, int disparar) {
 		this.acelerar = acelerar;
-		this.giroIzquierda = giroIzquierda;
-		this.giroDerecha = giroDerecha;
 		this.disparar = disparar;
 	}
-
-
 }
 
 

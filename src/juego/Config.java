@@ -19,7 +19,7 @@ public class Config {
     public static double VELOCIDAD = 1;
     public static double DIFICULTAD = 1;
     public static int VIDAS = 3;
-    public static int arma = 1;
+    public static int ARMA = 1;
 }
 
 

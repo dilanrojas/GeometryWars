@@ -9,6 +9,7 @@ import motor.entidades.Sprite;
 import motor.entidades.SpriteMovible;
 import motor.entidades.interfaces.IColisionable;
 import motor.input.InputKeyboard;
+import motor.input.InputMouse;
 import motor.util.Vector2D;
 
 /**
@@ -19,8 +20,7 @@ import motor.util.Vector2D;
  */
 
 public class Nave extends SpriteMovible {
-
-	private static final int FACTOR_ROTACION = (int) (5 * Config.VELOCIDAD); // grados por frame
+	// Configuraciones de la nave
 	private static final double FACTOR_VELOCIDAD = 600 * Config.VELOCIDAD;
 	private static final double VELOCIDAD_MAX = 300 * Config.VELOCIDAD; // píxeles/segundo
 	private static final double FACTOR_ACELERACION = 1; // multiplicador de empuje
@@ -37,7 +37,6 @@ public class Nave extends SpriteMovible {
 	private double tiempoParpadeo = 0;
 	private double tiempoTotalParpadeo = 0;
 	private double intervaloParpadeo = 0.2;
-
 
 	public Nave(BufferedImage textura, Vector2D posicion, Controles controles) {
 		super(textura, posicion);
@@ -96,22 +95,19 @@ public class Nave extends SpriteMovible {
 	        return;
 	    }
 
-		// === CONTROL DE ROTACIÓN ===
-		if (InputKeyboard.isDown(controles.giroDerecha)) {
-			rotarDerecha();
-		}
-
-		if (InputKeyboard.isDown(controles.giroIzquierda)) {
-			rotarIzquierda();
-		}
-
 		// === CONTROL DE ACELERACIÓN / FRICCIÓN ===
 		if (InputKeyboard.isDown(controles.acelerar)) {
 			acelerar();
 		} else {
 			frenar();
 		}
-
+		
+		Vector2D mousePos = InputMouse.getPosicion();
+		Vector2D centroNave = getPosicion().add(getCentro());
+		Vector2D direccionMouse = mousePos.subtract(centroNave);
+		direccionActual = (int) Math.toDegrees(Math.atan2(direccionMouse.getY(), direccionMouse.getX()));
+		rotarloA(direccionActual);
+		
 		// === LIMITAR VELOCIDAD ===
 		getMovement().limitarVelocidad(0, VELOCIDAD_MAX);
 
@@ -220,16 +216,6 @@ public class Nave extends SpriteMovible {
 		this.fireIzquierdo = fireIzquierdo;
 	}
 
-	/** Rota la nave hacia la derecha. */
-	public void rotarDerecha() {
-		rotarloA(direccionActual+= FACTOR_ROTACION);
-	}
-
-	/** Rota la nave hacia la izquierda. */
-	public void rotarIzquierda() {
-		rotarloA(direccionActual-= FACTOR_ROTACION);
-	}
-
 	public void acelerar() {
 		getPhysics().acelerar(movement, direccionActual);
 		isAcelerando = true;
@@ -272,7 +258,7 @@ public class Nave extends SpriteMovible {
 	}
 
 	public boolean quiereDisparar() {
-		return InputKeyboard.isKeyPressed(controles.disparar);
+		return InputMouse.isClicked() || InputKeyboard.isKeyPressed(controles.disparar);
 	}
 
 	private void encenderPropulsion() {

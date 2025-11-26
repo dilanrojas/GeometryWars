@@ -55,7 +55,7 @@ public abstract class Nivel extends Scene {
 	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
 		this.administrador = new AdministradorDeColisiones();
-		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
+		Controles controles = new Controles(Key.W, Key.SPACE);
 		this.jugador = new Nave(Assets.textura_nave, centroPantalla, controles);
 		this.balas = new ListaEntidades();
 		this.fondo = new Sprite(Assets.textura_fondo, Vector2D.ZERO);
