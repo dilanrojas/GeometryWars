@@ -30,6 +30,13 @@ public class Nave extends SpriteMovible {
 	private Sprite fireDerecho, fireIzquierdo;
 	private boolean isAcelerando;	
 	private int vidas;
+	
+	// === PARPADEO DE REAPARICIÓN ===
+	private boolean parpadeando = false;
+	private double tiempoParpadeo = 0;
+	private double tiempoTotalParpadeo = 0;
+	private double intervaloParpadeo = 0.2;
+
 
 	public Nave(BufferedImage textura, Vector2D posicion, Controles controles) {
 		super(textura, posicion);
@@ -61,6 +68,33 @@ public class Nave extends SpriteMovible {
 	
 	@Override
 	public void actualizar() {
+	    double dt = motor.GameLoop.deltaTimeSeconds;
+
+	    // === PARPADEO DE REAPARICIÓN ===
+	    if (parpadeando) {
+
+	        tiempoParpadeo += dt;
+
+	        // alternar visible/invisible cada intervalo
+	        if ((int)(tiempoParpadeo / intervaloParpadeo) % 2 == 0) {
+	            setVisible(false);
+	        } else {
+	            setVisible(true);
+	        }
+
+	        // Terminar parpadeo
+	        if (tiempoParpadeo >= tiempoTotalParpadeo) {
+	            parpadeando = false;
+	            setVisible(true);
+	        }
+
+	        // No permitir movimientos mientras parpadea
+	        detener();
+	        isAcelerando = false;
+	        super.actualizar();
+	        return;
+	    }
+
 		// === CONTROL DE ROTACIÓN ===
 		if (InputKeyboard.isDown(controles.giroDerecha)) {
 			rotarDerecha();
@@ -111,6 +145,14 @@ public class Nave extends SpriteMovible {
 			super.destruir();
 		}
 	}
+	
+	// Comenzar parpadeo
+	public void iniciarParpadeo(double duracionSeg) {
+	    parpadeando = true;
+	    tiempoParpadeo = 0;
+	    tiempoTotalParpadeo = duracionSeg;
+	}
+
 
 	public Sprite getFireDerecho() {
 		return fireDerecho;

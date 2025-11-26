@@ -49,12 +49,14 @@ public abstract class Nivel extends Scene {
 	private double tiempoJugado = 0;
 	
 	private Sprite fondo;
+	
+	private Vector2D centroPantalla = new Vector2D((Config.WIDTH / 2) - (Assets.textura_nave.getWidth() / 2), (Config.HEIGHT / 2) - (Assets.textura_nave.getHeight() / 2));
 
 	public Nivel(double tiempoEntreOrdas, int enemigosPorOleada, int enemigosParaGanar) {
 		this.listaEnemigos = new ListaEntidades();
 		this.administrador = new AdministradorDeColisiones();
 		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
-		this.jugador = new Nave(Assets.textura_nave, new Vector2D((Config.WIDTH / 2) - (Assets.textura_nave.getWidth() / 2), (Config.HEIGHT / 2) - (Assets.textura_nave.getHeight() / 2)), controles);
+		this.jugador = new Nave(Assets.textura_nave, centroPantalla, controles);
 		this.balas = new ListaEntidades();
 		this.fondo = new Sprite(Assets.textura_fondo, Vector2D.ZERO);
 		
@@ -85,10 +87,10 @@ public abstract class Nivel extends Scene {
 		if (balas != null) balas.dibujar(g);
 		if (listaEnemigos != null) listaEnemigos.dibujar(g);
 		g.setFont(new Font("Arial", Font.BOLD, 26));
-		g.setColor(Color.CYAN);
-	    g.drawString("Tiempo: " + (int) tiempoJugado, 20, 30);
-	    g.drawString("Kills: " + enemigosMuertos, 20, 60);
-	    if (jugador != null) g.drawString("Vidas: " + jugador.getVidas(), 20, 90);
+		g.setColor(Color.WHITE);
+		if (jugador != null) g.drawString("Vidas: " + jugador.getVidas(), 20, 40);
+		g.drawString("Puntos: " + enemigosMuertos, 20, 80);
+		g.drawString("Objetivo: " + enemigosParaGanar, 20, 120);
 	}
 
 	@Override
@@ -129,7 +131,7 @@ public abstract class Nivel extends Scene {
 			Assets.reproducirExplosion();
 
 			if (enemigosMuertos == this.enemigosParaGanar) {
-				JOptionPane.showMessageDialog(null, "Ganaste");
+				JOptionPane.showMessageDialog(null, "¡Nivel completado!");
 				completado(true );
 			}
 		}
@@ -137,20 +139,33 @@ public abstract class Nivel extends Scene {
 		// Jugador --> Enemigos
 		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
 			if (jugador.getVidas() > 0) {
-				jugador.setVidas(jugador.getVidas() - 1);
+				reaparecer();
 				return;
 			} else {
-				JOptionPane.showMessageDialog(null, "Perdiste");
+				JOptionPane.showMessageDialog(null, "¡Te quedaste sin vidas!");
 				completado(false);				
 			}
 		}
 	}
-	
 
+	// Controlar reaparición de la nave al colisionar
+	public void reaparecer() {
+
+	    listaEnemigos.destruirAll();
+	    contador = tiempoEntreOrdas - 4; 
+	    jugador.setVidas(jugador.getVidas() - 1);
+
+	    jugador.posicionarloA(centroPantalla);
+
+	    // 4 parpadeos de 0.4s = 1.6 segundos
+	    jugador.iniciarParpadeo(1.6);
+	}
+
+
+	// Devolver al controladorNiveles la información de la partida
 	public void completado(boolean gano) {
 		controlador.cerrarJuego(gano, enemigosMuertos, nivelActual, (int) Math.round(tiempoJugado));
 	}
-
 
 	// Generar origen (spawn) de enemigos en un radio determinado
 	private Vector2D generarSpawnAlejado(
@@ -166,7 +181,7 @@ public abstract class Nivel extends Scene {
 		return new Vector2D(x, y);
 	}
 
-	// Metodo oleada, modificado en las diferentes dificultades
+	// Metodo oleada, genera enemigos de diferente dificultad según porcentajes
 	protected void oleada(
 		double porcentajeFaciles,
 		double porcentajeMedios,

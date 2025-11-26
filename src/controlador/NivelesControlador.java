@@ -127,7 +127,7 @@ public class NivelesControlador implements ActionListener {
     	if (gano) {
     		usuarioIngresado.setPuntaje(usuarioIngresado.getPuntaje() + puntajeObtenido);
     		if (usuarioIngresado.getNivel() != listaNiveles().length - 1 &&
-    				usuarioIngresado.getNivel() <= nivelAlcanzado) {
+    			usuarioIngresado.getNivel() <= nivelAlcanzado) {
     			usuarioIngresado.setNivel(nivelAlcanzado + 1);
     		}
     		usuarioIngresado.setTiempoJugado(usuarioIngresado.getTiempoJugado() + tiempoDelNivel);
