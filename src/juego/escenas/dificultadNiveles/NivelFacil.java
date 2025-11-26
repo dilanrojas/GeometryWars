@@ -11,12 +11,12 @@ import juego.escenas.Nivel;
 
 public class NivelFacil extends Nivel {
   public NivelFacil(int enemigosPorOleada, int enemigosParaGanar) {
-    super(10.0, enemigosPorOleada, enemigosParaGanar);
+    super(8.0, enemigosPorOleada, enemigosParaGanar);
   }
 
   @Override
   public void generarEnemigos() {
-    oleada(0.7, 0.3, 0.0, 600, 680);
+    oleada(0.7, 0.3, 0.0, 500, 900);
   }
 }
 

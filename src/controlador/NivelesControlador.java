@@ -41,7 +41,8 @@ public class NivelesControlador implements ActionListener {
 			" Evada y elimine a los enemigos para ganar puntos\n\n" +
 			"Controles: \n" +
 			" Avanzar: W\n" +
-			" Girar cámara: Puntero (Mouse)\n";
+			" Girar cámara: Puntero (Mouse)\n" +
+			" Disparar: Click izquierdo o Tecla espaciadora";
 	
 	// Constructor
 	public NivelesControlador(IUsuarioDAO modelo, NivelesVista vista, Usuario usuarioIngresado) {

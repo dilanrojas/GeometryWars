@@ -77,6 +77,21 @@
     {
         "configuraciones": {
             "vidas": 3,
+            "arma": 3,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 0,
+        "tiempoJugado": 0,
+        "nickname": "joswed",
+        "contrasena": "josue00",
+        "ID": 8,
+        "nombre": "Dilan Rojas",
+        "nivel": 0
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
             "arma": 2,
             "velocidad": 3,
             "dificultad": 3
@@ -91,10 +106,10 @@
     },
     {
         "configuraciones": {
-            "vidas": 5,
-            "arma": 1,
-            "velocidad": 3,
-            "dificultad": 1
+            "vidas": 3,
+            "arma": 3,
+            "velocidad": 1,
+            "dificultad": 3
         },
         "puntaje": 3,
         "tiempoJugado": 0,
@@ -103,21 +118,6 @@
         "ID": 7,
         "nombre": "Karla",
         "nivel": 5
-    },
-    {
-        "configuraciones": {
-            "vidas": 3,
-            "arma": 3,
-            "velocidad": 1,
-            "dificultad": 1
-        },
-        "puntaje": 5,
-        "tiempoJugado": 7,
-        "nickname": "joswed",
-        "contrasena": "josue00",
-        "ID": 8,
-        "nombre": "Dilan Rojas",
-        "nivel": 1
     },
     {
         "configuraciones": {

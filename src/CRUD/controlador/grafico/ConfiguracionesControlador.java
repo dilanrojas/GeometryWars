@@ -52,7 +52,6 @@ public class ConfiguracionesControlador implements ActionListener, IMostrarDatos
 			usuario.setConfiguraciones(configsNuevas);
 			modelo.guardarDataset();
 			vista.mostrarMsj("Configuraciones guardadas");
-			aplicarConfiguraciones(usuario);
 			vista.cerrar();
 
 		} else if (source == vista.getBtnRestablecer()) {
@@ -89,38 +88,5 @@ public class ConfiguracionesControlador implements ActionListener, IMostrarDatos
 		vista.setDificultad(configuraciones.getDificultad());
 		vista.setID(usuario.getID());
 		vista.setVisible(true);
-	}
-	
-	public void aplicarConfiguraciones(Usuario usuario) {
-		switch (usuario.getConfiguraciones().getVelocidad()) {
-		case 1:
-			Config.VELOCIDAD = 1;
-			break;
-		case 2:
-			Config.VELOCIDAD = 1.4;
-			break;
-		case 3:
-			Config.VELOCIDAD = 1.7;
-			break;
-		default:
-			Config.VELOCIDAD = 1;
-			break;
-		}
-
-		switch(usuario.getConfiguraciones().getDificultad()) {
-		case 1:
-			Config.DIFICULTAD = 1;
-			break;
-		case 2:
-			Config.DIFICULTAD = 1.4;
-			break;
-		case 3:
-			Config.DIFICULTAD = 1.7;
-			break;
-		default:
-		}
-
-		Config.ARMA = usuario.getConfiguraciones().getArma();
-		Config.VIDAS = usuario.getConfiguraciones().getVidas();
 	}
 }

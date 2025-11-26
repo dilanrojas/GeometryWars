@@ -55,7 +55,7 @@ public class Nave extends SpriteMovible {
 		getPhysics().setAceleracion(FACTOR_VELOCIDAD);
 		getPhysics().setFriccion(0.88);
 
-		escalarloA(0.7); // HACEMOS LA NAVE MAS PEQUENA
+		escalarloA(0.7);
 
 		this.controles = controles;
 

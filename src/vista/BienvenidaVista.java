@@ -41,17 +41,17 @@ public class BienvenidaVista extends JFrame {
 	private void initComponents() {
 		lblNombreJuego = new JLabel("¡Bienvenido a Geometry Wars! ");
 		lblNombreJuego.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNombreJuego.setBounds(118, 30, 241, 45);
+		lblNombreJuego.setBounds(133, 26, 241, 45);
 		getContentPane().add(lblNombreJuego);
 
 		lblAutores = new JLabel("Autores:");
 		lblAutores.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAutores.setBounds(27, 68, 76, 22);
+		lblAutores.setBounds(45, 68, 76, 22);
 		getContentPane().add(lblAutores);
 
 		lblNombres = new JLabel("Dilan Rojas - Ana González - Sebastián Castro");
 		lblNombres.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombres.setBounds(96, 65, 293, 29);
+		lblNombres.setBounds(115, 65, 293, 29);
 		getContentPane().add(lblNombres);
 
 		btnInscribir = new JButton("Inscribirse");

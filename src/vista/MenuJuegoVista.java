@@ -21,7 +21,6 @@ public class MenuJuegoVista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblMenu;
 	private JButton btnEstadisticas;
-	private JButton btnConfiguraciones;
 	private JButton btnSalir;
 	private JButton btnJugar;
 	
@@ -32,8 +31,8 @@ public class MenuJuegoVista extends JFrame {
 
 	public MenuJuegoVista() {
 		initComponents();
-		setTitle("Menu de juego");
-		setSize(400, 400);
+		setTitle("Menu | Geometry Wars");
+		setSize(375, 340);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -50,15 +49,10 @@ public class MenuJuegoVista extends JFrame {
 		btnEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEstadisticas.setBounds(107, 137, 146, 37);
 		getContentPane().add(btnEstadisticas);
-		
-		btnConfiguraciones = new JButton("Configuraciones");
-		btnConfiguraciones.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnConfiguraciones.setBounds(107, 186, 146, 37);
-		getContentPane().add(btnConfiguraciones);
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSalir.setBounds(107, 235, 146, 37);
+		btnSalir.setBounds(107, 186, 146, 37);
 		getContentPane().add(btnSalir);
 
 		lblMenu = new JLabel("Menu del jugador");
@@ -70,10 +64,6 @@ public class MenuJuegoVista extends JFrame {
 	//Getters
 	public JButton getBtnEstadisticas() {
 		return btnEstadisticas;
-	}
-	
-	public JButton getBtnConfiguraciones() {
-		return btnConfiguraciones;
 	}
 
 	public JButton getBtnSalir() {
@@ -88,7 +78,6 @@ public class MenuJuegoVista extends JFrame {
 	public void setEscuchadores(ActionListener escuchador) {
 		btnJugar.addActionListener(escuchador);
 		btnEstadisticas.addActionListener(escuchador);
-		btnConfiguraciones.addActionListener(escuchador);
 		btnSalir.addActionListener(escuchador);
 	}
 

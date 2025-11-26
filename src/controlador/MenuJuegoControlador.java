@@ -25,9 +25,6 @@ public class MenuJuegoControlador implements ActionListener {
 	private NivelesControlador nivelesControlador;
 	private Usuario usuarioIngresado;
 	
-	private ConfiguracionesVista configuracionesVista;
-	private ConfiguracionesControlador configuracionesControlador;
-	
 	// Constructor
 	public MenuJuegoControlador(IUsuarioDAO modelo, MenuJuegoVista vista, Usuario usuarioIngresado) {
 		this.modelo = modelo;
@@ -45,8 +42,6 @@ public class MenuJuegoControlador implements ActionListener {
 			jugar();
 		} else if (source == vista.getBtnEstadisticas()) {
 			estadisticas();
-		} else if (source == vista.getBtnConfiguraciones()) {
-			configuraciones();
 		} else if (source == vista.getBtnSalir()) {
 			vista.cerrar();
 		}
@@ -60,11 +55,5 @@ public class MenuJuegoControlador implements ActionListener {
 	
 	public void estadisticas() {
 		vista.mostrarMsj(usuarioIngresado.estadisticas());
-	}
-	
-	public void configuraciones() {
-		configuracionesVista = new ConfiguracionesVista();
-		configuracionesControlador = new ConfiguracionesControlador(modelo, configuracionesVista);
-		configuracionesControlador.mostrarDatos(usuarioIngresado);
 	}
 }

@@ -11,11 +11,11 @@ import juego.escenas.Nivel;
 
 public class NivelMedio extends Nivel {
 	public NivelMedio(int enemigosPorOleada, int enemigosParaGanar) {
-		super(10.0, enemigosPorOleada, enemigosParaGanar);
+		super(7.0, enemigosPorOleada, enemigosParaGanar);
 	}
 
 	@Override
 	public void generarEnemigos() {
-		oleada(0.2, 0.6, 0.2, 500, 580);
+		oleada(0.2, 0.6, 0.2, 350, 800);
 	}
 }
