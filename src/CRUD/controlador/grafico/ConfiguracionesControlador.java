@@ -120,6 +120,7 @@ public class ConfiguracionesControlador implements ActionListener, IMostrarDatos
 		default:
 		}
 
+		Config.ARMA = usuario.getConfiguraciones().getArma();
 		Config.VIDAS = usuario.getConfiguraciones().getVidas();
 	}
 }

@@ -10,6 +10,7 @@ import controlador.NivelesControlador;
 import juego.Assets;
 import juego.Config;
 import juego.entidades.AdministradorDeColisiones;
+import juego.entidades.Bala;
 import juego.entidades.Controles;
 import juego.entidades.Nave;
 import juego.entidades.enemigos.EnemigoDificil;
@@ -48,6 +49,18 @@ public abstract class Nivel extends Scene {
 	private double contador = 0;
 	private double tiempoJugado = 0;
 	
+	// === Controlar disparo en ráfagas ===
+	private int rafagaIndex = 0;
+	private Bala[] rafagaActual = null;
+	private double tiempoEntreBalas = 0.1;
+	private double contadorRafaga = 0;
+	private double cooldownRafaga = 0.5;
+	private double contadorCooldown = 0;
+	
+	// === Controlar disparo automático ===
+	private double cooldownAutomatico = 0.2;
+	private double contadorCooldownAuto = 0;
+	
 	private Sprite fondo;
 	
 	private Vector2D centroPantalla = new Vector2D((Config.WIDTH / 2) - (Assets.textura_nave.getWidth() / 2), (Config.HEIGHT / 2) - (Assets.textura_nave.getHeight() / 2));
@@ -68,7 +81,19 @@ public abstract class Nivel extends Scene {
 	@Override
 	public final void actualizar() {
 		if (jugador != null) jugador.actualizar();
-		disparar();
+		
+		switch (Config.ARMA) {
+		case 1: {
+			dispararAutomatico();
+			break;
+		}
+		case 2:
+			dispararRafaga();
+			break;
+		default:
+			System.out.println("y el arma, pa?");
+			break;
+		}
 
 		balas.actualizar();
 		listaEnemigos.actualizar();
@@ -101,11 +126,47 @@ public abstract class Nivel extends Scene {
 	}
 
 	// Disparos del jugador
-	private void disparar() {
-		if (jugador != null && jugador.quiereDisparar()) {
-			balas.add(jugador.disparar());
-			Assets.reproducirDisparo();
-		}
+	private void dispararRafaga() {
+	    contadorCooldown += motor.GameLoop.deltaTimeSeconds;
+
+	    // === Disparar si no hay cooldown ===
+	    if (jugador != null && jugador.quiereDisparar() && contadorCooldown >= cooldownRafaga) {
+
+	        if (rafagaActual == null) {
+	            rafagaActual = jugador.disparoRafaga(jugador.getDireccionActual());
+	            rafagaIndex = 0;
+	            contadorRafaga = tiempoEntreBalas;
+	            Assets.reproducirDisparo();
+	            contadorCooldown = 0;
+	        }
+	    }
+
+	    if (rafagaActual != null) {
+	        contadorRafaga += motor.GameLoop.deltaTimeSeconds;
+
+	        if (contadorRafaga >= tiempoEntreBalas) {
+	            if (rafagaIndex < rafagaActual.length) {
+	                balas.add(rafagaActual[rafagaIndex]);
+	                rafagaIndex++;
+	                contadorRafaga = 0;
+	                
+	            } else {
+	                rafagaActual = null;
+	                
+	            }
+	        }
+	    }
+	}
+	
+	private void dispararAutomatico() {
+	    // Actualizar contador
+	    contadorCooldownAuto += motor.GameLoop.deltaTimeSeconds;
+
+	    if (jugador != null && jugador.quiereDisparar() && contadorCooldownAuto >= cooldownAutomatico) {
+	        balas.add(jugador.disparoAutomatico());
+	        Assets.reproducirDisparo();
+	        contadorCooldownAuto = 0;
+	    }
 	}
 	
 	// Generación de enemigos

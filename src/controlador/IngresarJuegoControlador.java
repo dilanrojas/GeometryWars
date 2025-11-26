@@ -90,7 +90,8 @@ public class IngresarJuegoControlador implements ActionListener {
 				break;
 			default:
 			}
-
+			
+			Config.ARMA = usuarioIngresado.getConfiguraciones().getArma();
 			Config.VIDAS = usuarioIngresado.getConfiguraciones().getVidas();
 			
 			vista.cerrar();

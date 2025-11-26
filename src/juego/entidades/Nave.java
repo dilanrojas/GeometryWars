@@ -250,16 +250,24 @@ public class Nave extends SpriteMovible {
 	/**
 	 * Dispara una bala desde la punta de la nave si la nave
 	 */
-	public Bala disparar() {
-		
+	public Bala disparoAutomatico() {
 		Vector2D posicionBala = dispararBala();
-		// Crear la bala
-		return new Bala(posicionBala, VELOCIDAD_BALA, direccionActual);
+		
+		return new Bala(dispararBala(), VELOCIDAD_BALA, direccionActual);
 	}
 
 	public boolean quiereDisparar() {
-		return InputMouse.isClicked() || InputKeyboard.isKeyPressed(controles.disparar);
+		return InputMouse.isPressed() || InputKeyboard.isDown(controles.disparar);
 	}
+	
+	public Bala[] disparoRafaga(int direccionBase) {
+	    return new Bala[] {
+	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase),
+	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase + 3),
+	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase - 3)
+	    };
+	}
+
 
 	private void encenderPropulsion() {
 	    Vector2D centroNave = getPosicion().add(getCentro());
@@ -300,6 +308,5 @@ public class Nave extends SpriteMovible {
 	    Vector2D centroFireMundial = centroNave.add(offsetDerecha);
 	    
 	    return centroFireMundial;
-	    
 	}
 }
