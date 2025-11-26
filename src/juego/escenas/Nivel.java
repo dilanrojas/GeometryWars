@@ -1,5 +1,7 @@
 package juego.escenas;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -78,6 +80,12 @@ public abstract class Nivel extends Scene {
 	@Override
 	public void dibujar(Graphics g) {
 		fondo.dibujar(g);
+		
+		g.setFont(new Font("Arial", Font.BOLD, 26));
+		g.setColor(Color.CYAN);
+	    g.drawString("Tiempo: " + (int) tiempoJugado, 20, 30);
+	    g.drawString("Kills: " + enemigosMuertos, 20, 60);
+		
 		if (jugador != null) jugador.dibujar(g);
 		if (balas != null) balas.dibujar(g);
 		if (listaEnemigos != null) listaEnemigos.dibujar(g);
@@ -299,3 +307,4 @@ public abstract class Nivel extends Scene {
 	    this.controlador = controlador;
 	}
 }
+
