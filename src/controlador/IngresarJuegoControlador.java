@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import CRUD.controlador.grafico.ConfiguracionesControlador;
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
 import juego.Config;
@@ -62,7 +63,7 @@ public class IngresarJuegoControlador implements ActionListener {
 			menuJuegoControlador = new MenuJuegoControlador(modelo, menuJuegoVista, usuarioIngresado);
 			
 			// Implementar configuaciones del usuario
-	    	switch (usuarioIngresado.getConfiguraciones().getVelocidad()) {
+			switch (usuarioIngresado.getConfiguraciones().getVelocidad()) {
 			case 1:
 				Config.VELOCIDAD = 1;
 				break;
@@ -76,7 +77,7 @@ public class IngresarJuegoControlador implements ActionListener {
 				Config.VELOCIDAD = 1;
 				break;
 			}
-			
+
 			switch(usuarioIngresado.getConfiguraciones().getDificultad()) {
 			case 1:
 				Config.DIFICULTAD = 1;
@@ -89,7 +90,7 @@ public class IngresarJuegoControlador implements ActionListener {
 				break;
 			default:
 			}
-			
+
 			Config.VIDAS = usuarioIngresado.getConfiguraciones().getVidas();
 			
 			vista.cerrar();

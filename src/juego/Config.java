@@ -1,5 +1,7 @@
 package juego;
 
+import CRUD.modelo.Usuario;
+
 /**
  * @author Dilan Rojas
  * @date Nov 18, 2025

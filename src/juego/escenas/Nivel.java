@@ -156,6 +156,7 @@ public abstract class Nivel extends Scene {
 	    jugador.setVidas(jugador.getVidas() - 1);
 
 	    jugador.posicionarloA(centroPantalla);
+	    jugador.rotarloA(-90);
 
 	    // 4 parpadeos de 0.4s = 1.6 segundos
 	    jugador.iniciarParpadeo(1.6);
