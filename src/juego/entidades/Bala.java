@@ -18,15 +18,11 @@ import motor.util.Vector2D;
 public class Bala extends SpriteMovible {
 
     private static final double DURACION_MAX = 2.0;      // segundos antes de desaparecer
-	  private static final int OFFSET_ANGULAR = 90; // DESFACE EN GRADOS DE LAS TEXTURAS
-
-    private double tiempoDeVida; // CRONOMETRO
+	private static final int OFFSET_ANGULAR = 90; // DESFACE EN GRADOS DE LAS TEXTURAS
 
     public Bala(Vector2D posicionInicial, double velocidadInicial, int anguloDireccion) {
         super(Assets.textura_bala, posicionInicial);
 
-        tiempoDeVida = 0;
-        		
         // Configurar movimiento inicial
         getMovement().setDireccion(anguloDireccion);
         getMovement().setVelocidad(velocidadInicial);

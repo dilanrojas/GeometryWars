@@ -27,8 +27,9 @@ public class ConfiguracionesVista extends JFrame {
 	private int ID;
 	private JButton btnCancelar;
 	private JButton btnGuardar;
-	private JRadioButton rdBtnAutomatica;
-	private JRadioButton rdBtnRafagas;
+	private JRadioButton rdBtnSubfusil;
+	private JRadioButton rdBtnEscopeta;
+	private JRadioButton rdBtnManual;
 	private JRadioButton rdBtnVidas3;
 	private JRadioButton rdBtnVidas5;
 	private JRadioButton rdBtnVidas7;
@@ -107,16 +108,21 @@ public class ConfiguracionesVista extends JFrame {
 
 		ButtonGroup grupoArmas = new ButtonGroup();
 
-		rdBtnAutomatica = new JRadioButton("Automática");
-		rdBtnAutomatica.setBounds(199, 222, 132, 25);
-		getContentPane().add(rdBtnAutomatica);
+		rdBtnSubfusil = new JRadioButton("Subfusil");
+		rdBtnSubfusil.setBounds(199, 222, 81, 25);
+		getContentPane().add(rdBtnSubfusil);
 
-		rdBtnRafagas = new JRadioButton("Ráfagas");
-		rdBtnRafagas.setBounds(335, 222, 132, 25);
-		getContentPane().add(rdBtnRafagas);
+		rdBtnEscopeta = new JRadioButton("Escopeta");
+		rdBtnEscopeta.setBounds(293, 222, 87, 25);
+		getContentPane().add(rdBtnEscopeta);
+		
+		rdBtnManual = new JRadioButton("Manual");
+		rdBtnManual.setBounds(390, 222, 81, 25);
+		getContentPane().add(rdBtnManual);
 
-		grupoArmas.add(rdBtnAutomatica);
-		grupoArmas.add(rdBtnRafagas);
+		grupoArmas.add(rdBtnSubfusil);
+		grupoArmas.add(rdBtnEscopeta);
+		grupoArmas.add(rdBtnManual);
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("Vidas extra");
 		lblNewLabel_1_1_1.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -170,9 +176,11 @@ public class ConfiguracionesVista extends JFrame {
 
 	public void setArma(int valor) {
 		if (valor == 1) {
-			rdBtnAutomatica.setSelected(true);
+			rdBtnSubfusil.setSelected(true);
 		} else if (valor == 2) {
-			rdBtnRafagas.setSelected(true);
+			rdBtnEscopeta.setSelected(true);
+		} else if (valor == 3) {
+			rdBtnManual.setSelected(true);
 		}
 	}
 
@@ -219,10 +227,15 @@ public class ConfiguracionesVista extends JFrame {
 	}
 
 	public int getArma() {
-		if (rdBtnAutomatica.isSelected()) return 1;
-		if (rdBtnRafagas.isSelected()) return 2;
+		if (rdBtnSubfusil.isSelected()) {
+			return 1;
+		} else if (rdBtnEscopeta.isSelected()) {
+			return 2;
+		} else if (rdBtnManual.isSelected()) {
+			return 3;
+		}
 
-		// Default (Automática)
+		// Por defecto (Subfusil)
 		return 1;
 	}
 
@@ -231,21 +244,30 @@ public class ConfiguracionesVista extends JFrame {
 	}
 
 	public int getVidas() {
-		if (rdBtnVidas3.isSelected()) return 3;
-		if (rdBtnVidas5.isSelected()) return 5;
-		if (rdBtnVidas7.isSelected()) return 7;
-		if (rdBtnVidas10.isSelected()) return 10;
+		if (rdBtnVidas3.isSelected()) {
+			return 3;
+		} else if (rdBtnVidas5.isSelected()) {
+			return 5;
+		} else if (rdBtnVidas7.isSelected()) {
+			return 7;
+		} else if (rdBtnVidas10.isSelected()) {
+			return 10;
+		}
 
-		// Default (3 vidas)
+		// Por defecto (3 vidas)
 		return 3;
 	}
 
 	public int getDificultad() {
-		if (rdBtnFacil.isSelected()) return 1;
-		if (rdBtnMedio.isSelected()) return 2;
-		if (rdBtnDificil.isSelected()) return 3;
+		if (rdBtnFacil.isSelected()) {
+			return 1;
+		} else if (rdBtnMedio.isSelected()) {
+			return 2;
+		} else if (rdBtnDificil.isSelected()) {
+			return 3;
+		}
 
-		// Default (Fácil)
+		// Por defecto (Fácil)
 		return 1;
 	}
 

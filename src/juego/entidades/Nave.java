@@ -2,6 +2,7 @@ package juego.entidades;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import juego.Assets;
 import juego.Config;
@@ -31,6 +32,7 @@ public class Nave extends SpriteMovible {
 	private Sprite fireDerecho, fireIzquierdo;
 	private boolean isAcelerando;	
 	private int vidas;
+	private Random random = new Random();
 	
 	// === PARPADEO DE REAPARICIÓN ===
 	private boolean parpadeando = false;
@@ -260,14 +262,28 @@ public class Nave extends SpriteMovible {
 		return InputMouse.isPressed() || InputKeyboard.isDown(controles.disparar);
 	}
 	
-	public Bala[] disparoRafaga(int direccionBase) {
+	public boolean quiereDispararManual() {
+		return InputMouse.isClicked() || InputKeyboard.isKeyPressed(controles.disparar);
+	}
+	
+	public Bala[] disparoEscopeta(int direccionBase) {
+	    int angulo1 = 3 + random.nextInt(7);
+	    int angulo2 = 3 + random.nextInt(7);
+
 	    return new Bala[] {
 	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase),
-	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase + 3),
-	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase - 3)
+	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase + angulo1),
+	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase - angulo2)
 	    };
 	}
 
+	public Bala disparoManual() {
+		// Posición de la bala desde el centro
+		Vector2D posicionBala = dispararBala();
+
+		// Crear la bala
+		return new Bala(posicionBala, VELOCIDAD_BALA, direccionActual);
+	}
 
 	private void encenderPropulsion() {
 	    Vector2D centroNave = getPosicion().add(getCentro());

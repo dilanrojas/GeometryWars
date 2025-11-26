@@ -38,12 +38,10 @@ public class NivelesControlador implements ActionListener {
 	
 	private String instrucciones =
 			"Instrucciones y reglas:\n" +
-			"Evada y elimine a los enemigos para ganar puntos\n\n" +
+			" Evada y elimine a los enemigos para ganar puntos\n\n" +
 			"Controles: \n" +
 			" Avanzar: W\n" +
-			" Derecha: D\n" +
-			" Izquierda: A\n" +
-			" Frenar: S\n";
+			" Girar cámara: Puntero (Mouse)\n";
 	
 	// Constructor
 	public NivelesControlador(IUsuarioDAO modelo, NivelesVista vista, Usuario usuarioIngresado) {

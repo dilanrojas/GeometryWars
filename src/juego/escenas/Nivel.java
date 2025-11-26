@@ -49,17 +49,17 @@ public abstract class Nivel extends Scene {
 	private double contador = 0;
 	private double tiempoJugado = 0;
 	
-	// === Controlar disparo en ráfagas ===
-	private int rafagaIndex = 0;
-	private Bala[] rafagaActual = null;
+	// === Controlar disparo tipo escopeta ===
+	private int escopetaIndex = 0;
+	private Bala[] escopetazoActual = null;
 	private double tiempoEntreBalas = 0.1;
-	private double contadorRafaga = 0;
-	private double cooldownRafaga = 0.5;
+	private double contadorEscopeta = 0;
+	private double cooldownEscopeta = 0.4;
 	private double contadorCooldown = 0;
 	
-	// === Controlar disparo automático ===
-	private double cooldownAutomatico = 0.2;
-	private double contadorCooldownAuto = 0;
+	// === Controlar disparo subfusil ===
+	private double contadorSubfusil = 0.2;
+	private double contadorCooldownSubfusil = 0;
 	
 	private Sprite fondo;
 	
@@ -90,8 +90,11 @@ public abstract class Nivel extends Scene {
 		case 2:
 			dispararRafaga();
 			break;
+		case 3:
+			disparoManual();
+			break;
 		default:
-			System.out.println("y el arma, pa?");
+			dispararAutomatico();
 			break;
 		}
 
@@ -130,28 +133,28 @@ public abstract class Nivel extends Scene {
 	    contadorCooldown += motor.GameLoop.deltaTimeSeconds;
 
 	    // === Disparar si no hay cooldown ===
-	    if (jugador != null && jugador.quiereDisparar() && contadorCooldown >= cooldownRafaga) {
+	    if (jugador != null && jugador.quiereDisparar() && contadorCooldown >= cooldownEscopeta) {
 
-	        if (rafagaActual == null) {
-	            rafagaActual = jugador.disparoRafaga(jugador.getDireccionActual());
-	            rafagaIndex = 0;
-	            contadorRafaga = tiempoEntreBalas;
+	        if (escopetazoActual == null) {
+	            escopetazoActual = jugador.disparoEscopeta(jugador.getDireccionActual());
+	            escopetaIndex = 0;
+	            contadorEscopeta = tiempoEntreBalas;
 	            Assets.reproducirDisparo();
 	            contadorCooldown = 0;
 	        }
 	    }
 
-	    if (rafagaActual != null) {
-	        contadorRafaga += motor.GameLoop.deltaTimeSeconds;
+	    if (escopetazoActual != null) {
+	        contadorEscopeta += motor.GameLoop.deltaTimeSeconds;
 
-	        if (contadorRafaga >= tiempoEntreBalas) {
-	            if (rafagaIndex < rafagaActual.length) {
-	                balas.add(rafagaActual[rafagaIndex]);
-	                rafagaIndex++;
-	                contadorRafaga = 0;
+	        if (contadorEscopeta >= tiempoEntreBalas) {
+	            if (escopetaIndex < escopetazoActual.length) {
+	                balas.add(escopetazoActual[escopetaIndex]);
+	                escopetaIndex++;
+	                contadorEscopeta = 0;
 	                
 	            } else {
-	                rafagaActual = null;
+	                escopetazoActual = null;
 	                
 	            }
 	        }
@@ -160,13 +163,20 @@ public abstract class Nivel extends Scene {
 	
 	private void dispararAutomatico() {
 	    // Actualizar contador
-	    contadorCooldownAuto += motor.GameLoop.deltaTimeSeconds;
+	    contadorCooldownSubfusil += motor.GameLoop.deltaTimeSeconds;
 
-	    if (jugador != null && jugador.quiereDisparar() && contadorCooldownAuto >= cooldownAutomatico) {
+	    if (jugador != null && jugador.quiereDisparar() && contadorCooldownSubfusil >= contadorSubfusil) {
 	        balas.add(jugador.disparoAutomatico());
 	        Assets.reproducirDisparo();
-	        contadorCooldownAuto = 0;
+	        contadorCooldownSubfusil = 0;
 	    }
+	}
+	
+	private void disparoManual() {
+		if (jugador != null && jugador.quiereDispararManual()) {
+			balas.add(jugador.disparoManual());
+			Assets.reproducirDisparo();
+		}
 	}
 	
 	// Generación de enemigos
