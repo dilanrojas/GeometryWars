@@ -90,9 +90,11 @@ public abstract class Nivel extends Scene {
 		case 2:
 			dispararRafaga();
 			break;
+			
 		case 3:
 			disparoManual();
 			break;
+			
 		default:
 			dispararAutomatico();
 			break;
@@ -130,6 +132,8 @@ public abstract class Nivel extends Scene {
 
 	// Disparos del jugador
 	private void dispararRafaga() {
+		if (jugador.isParpadeando()) return;
+		
 	    contadorCooldown += motor.GameLoop.deltaTimeSeconds;
 
 	    // === Disparar si no hay cooldown ===
@@ -162,19 +166,23 @@ public abstract class Nivel extends Scene {
 	}
 	
 	private void dispararAutomatico() {
+		if (jugador.isParpadeando()) return;
+		
 	    // Actualizar contador
 	    contadorCooldownSubfusil += motor.GameLoop.deltaTimeSeconds;
 
 	    if (jugador != null && jugador.quiereDisparar() && contadorCooldownSubfusil >= contadorSubfusil) {
-	        balas.add(jugador.disparoAutomatico());
+	        balas.add(jugador.disparo());
 	        Assets.reproducirDisparo();
 	        contadorCooldownSubfusil = 0;
 	    }
 	}
 	
 	private void disparoManual() {
+		if (jugador.isParpadeando()) return;
+		
 		if (jugador != null && jugador.quiereDispararManual()) {
-			balas.add(jugador.disparoManual());
+			balas.add(jugador.disparo());
 			Assets.reproducirDisparo();
 		}
 	}

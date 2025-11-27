@@ -35,7 +35,7 @@ public class Nave extends SpriteMovible {
 	private Random random = new Random();
 	
 	// === PARPADEO DE REAPARICIÓN ===
-	private boolean parpadeando = false;
+	private boolean parpadeando;
 	private double tiempoParpadeo = 0;
 	private double tiempoTotalParpadeo = 0;
 	private double intervaloParpadeo = 0.2;
@@ -44,7 +44,8 @@ public class Nave extends SpriteMovible {
 		super(textura, posicion);
 		
 		this.vidas = Config.VIDAS;
-
+		this.parpadeando = false;
+		
 		fireDerecho = new Sprite(Assets.textura_fire, posicion);
 		fireIzquierdo = new Sprite(Assets.textura_fire, posicion);
 
@@ -232,18 +233,6 @@ public class Nave extends SpriteMovible {
 		getMovement().detener();
 	}
 
-	public int getDireccionActual() {
-		return direccionActual;
-	}
-	
-	public int getVidas() {
-		return vidas;
-	}
-	
-	public void setVidas(int vidas) {
-		this.vidas = vidas;
-	}
-
 	/** Cuando recibe un impacto */
 	public void recibirImpacto() {
 		System.out.println("La nave ha sido destruida!");
@@ -252,7 +241,7 @@ public class Nave extends SpriteMovible {
 	/**
 	 * Dispara una bala desde la punta de la nave si la nave
 	 */
-	public Bala disparoAutomatico() {
+	public Bala disparo() {
 		Vector2D posicionBala = dispararBala();
 		
 		return new Bala(dispararBala(), VELOCIDAD_BALA, direccionActual);
@@ -275,14 +264,6 @@ public class Nave extends SpriteMovible {
 	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase + angulo1),
 	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase - angulo2)
 	    };
-	}
-
-	public Bala disparoManual() {
-		// Posición de la bala desde el centro
-		Vector2D posicionBala = dispararBala();
-
-		// Crear la bala
-		return new Bala(posicionBala, VELOCIDAD_BALA, direccionActual);
 	}
 
 	private void encenderPropulsion() {
@@ -325,4 +306,90 @@ public class Nave extends SpriteMovible {
 	    
 	    return centroFireMundial;
 	}
+
+	// Getters & Setters
+	public Controles getControles() {
+		return controles;
+	}
+
+	public void setControles(Controles controles) {
+		this.controles = controles;
+	}
+
+	public int getDireccionActual() {
+		return direccionActual;
+	}
+
+	public void setDireccionActual(int direccionActual) {
+		this.direccionActual = direccionActual;
+	}
+
+	public boolean isAcelerando() {
+		return isAcelerando;
+	}
+
+	public void setAcelerando(boolean isAcelerando) {
+		this.isAcelerando = isAcelerando;
+	}
+
+	public int getVidas() {
+		return vidas;
+	}
+
+	public void setVidas(int vidas) {
+		this.vidas = vidas;
+	}
+	
+	public boolean isParpadeando() {
+		return parpadeando;
+	}
+
+	public void setParpadeando(boolean parpadeando) {
+		this.parpadeando = parpadeando;
+	}
+
+	public double getTiempoParpadeo() {
+		return tiempoParpadeo;
+	}
+
+	public void setTiempoParpadeo(double tiempoParpadeo) {
+		this.tiempoParpadeo = tiempoParpadeo;
+	}
+
+	public double getTiempoTotalParpadeo() {
+		return tiempoTotalParpadeo;
+	}
+
+	public void setTiempoTotalParpadeo(double tiempoTotalParpadeo) {
+		this.tiempoTotalParpadeo = tiempoTotalParpadeo;
+	}
+
+	public double getIntervaloParpadeo() {
+		return intervaloParpadeo;
+	}
+
+	public void setIntervaloParpadeo(double intervaloParpadeo) {
+		this.intervaloParpadeo = intervaloParpadeo;
+	}
+
+	public static double getFactorVelocidad() {
+		return FACTOR_VELOCIDAD;
+	}
+
+	public static double getVelocidadMax() {
+		return VELOCIDAD_MAX;
+	}
+
+	public static double getFactorAceleracion() {
+		return FACTOR_ACELERACION;
+	}
+
+	public static double getVelocidadBala() {
+		return VELOCIDAD_BALA;
+	}
+
+	public static int getOffsetAngular() {
+		return OFFSET_ANGULAR;
+	}
+
 }
