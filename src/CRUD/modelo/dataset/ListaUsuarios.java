@@ -74,7 +74,7 @@ public class ListaUsuarios {
       if (size == 0 || lista == null) return null;
       String usuarios = "";
       for (Usuario usuario : lista) {
-    	  if (usuario != null) usuarios += usuario.toString() + "\n";
+    	  if (usuario != null) usuarios += usuario.getID() + ". " + usuario.getNickname() + "\n";
       }
       return usuarios;
   }
@@ -113,6 +113,7 @@ public class ListaUsuarios {
   public boolean eliminar(int index) {
 	  if (index < 0 || index >= size) return false;
 	  lista[index] = null;
+	  corrimiento(index);
 	  return true;
   }
   
@@ -125,18 +126,26 @@ public class ListaUsuarios {
   
   // Ordenamiento
   public Usuario[] ordenamiento(Usuario[] listaPorOrdenar, int sizeLista) {
-	  Usuario[] listaOrdenada = listaPorOrdenar;
-	  
-	  for (int i = 0; i < sizeLista - 1; i++) {
-		  for (int j = 0; j < sizeLista - 1; j++) {
-			  if (listaOrdenada[j].getPuntaje() < listaOrdenada[j + 1].getPuntaje()) {
-				  intercambiar(j, j + 1);
-			  }
-		  }
-	  }
-	  
-	  return listaOrdenada;
-  }
+	    // Crear copia para no modificar la lista real
+	    Usuario[] listaOrdenada = new Usuario[sizeLista];
+	    for (int i = 0; i < sizeLista; i++) {
+	        listaOrdenada[i] = listaPorOrdenar[i];
+	    }
+
+	    // Ordena descendientemente según puntaje
+	    for (int i = 0; i < sizeLista - 1; i++) {
+	        for (int j = 0; j < sizeLista - 1; j++) {
+	            if (listaOrdenada[j].getPuntaje() < listaOrdenada[j + 1].getPuntaje()) {
+	                Usuario temp = listaOrdenada[j];
+	                listaOrdenada[j] = listaOrdenada[j + 1];
+	                listaOrdenada[j + 1] = temp;
+	            }
+	        }
+	    }
+
+	    return listaOrdenada;
+	}
+
   
   // Records
   public String records(int cantidadRecords) {

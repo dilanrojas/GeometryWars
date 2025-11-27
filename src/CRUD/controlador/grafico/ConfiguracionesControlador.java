@@ -27,7 +27,7 @@ public class ConfiguracionesControlador implements ActionListener, IMostrarDatos
 	public ConfiguracionesControlador(
 			IUsuarioDAO modelo ,
 			ConfiguracionesVista vista
-			) {
+	) {
 		this.vista = vista;
 		this.modelo = modelo;
 

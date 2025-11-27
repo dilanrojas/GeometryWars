@@ -54,7 +54,7 @@ public abstract class Nivel extends Scene {
 	private Bala[] escopetazoActual = null;
 	private double tiempoEntreBalas = 0.1;
 	private double contadorEscopeta = 0;
-	private double cooldownEscopeta = 0.4;
+	private double cooldownEscopeta = 0.45;
 	private double contadorCooldown = 0;
 	
 	// === Controlar disparo subfusil ===

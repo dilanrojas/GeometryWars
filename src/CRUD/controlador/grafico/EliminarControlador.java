@@ -37,7 +37,7 @@ public class EliminarControlador implements ActionListener, IMostrarDatos {
 
 	    if (source == vista.getBtnEliminar()) {
         	int usuarioID = vista.getID() - 1;
-            Usuario usuario = modelo.getElemento(usuarioID);
+            Usuario usuario = modelo.getElemento(0);
             
             if (usuario != null) {
                 modelo.eliminar(usuarioID);

@@ -267,8 +267,8 @@ public class Nave extends SpriteMovible {
 	}
 	
 	public Bala[] disparoEscopeta(int direccionBase) {
-	    int angulo1 = 3 + random.nextInt(7);
-	    int angulo2 = 3 + random.nextInt(7);
+	    int angulo1 = 3 + random.nextInt(11);
+	    int angulo2 = 3 + random.nextInt(11);
 
 	    return new Bala[] {
 	        new Bala(dispararBala(), VELOCIDAD_BALA, direccionBase),
