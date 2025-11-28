@@ -25,16 +25,5 @@ public class EnemigoDificil extends Enemigo {
           40     // <-- Desviacion
       );
     }
-
-    /*@Override
-    public void mover() {
-        // Movimiento aleatorio con tendencia hacia el jugador
-        Vector2D objetivo = target.getPosicion().subtract(transform.getPosicion()).normalize();
-        Vector2D aleatorio = new Vector2D(Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
-        direccionActual = objetivo.add(aleatorio).normalize();
-
-        movement.setDireccion(direccionActual);
-        physics.acelerar(movement);
-        movement.mover(transform);
-    }*/
 }
+
