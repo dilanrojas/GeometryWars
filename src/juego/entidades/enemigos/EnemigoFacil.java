@@ -9,8 +9,8 @@ import motor.util.Vector2D;
  * @author AnaGonzalezC5F593
  * @date 21 nov 2025
  * @version 1.0
- * @description Clase EnemigoFacil es un enemigo sencillo, el cual no tiene un ataque especial ya quesu forma de ataque es colisionar con el jugador.
- */
+ * @description Enemigode dificultad facil
+  */
 
 public class EnemigoFacil extends Enemigo {
   public EnemigoFacil(Vector2D posicion, Nave target) {
@@ -24,3 +24,4 @@ public class EnemigoFacil extends Enemigo {
     );
   }
 }
+
