@@ -22,4 +22,4 @@ Controles:
   - La dirección de la nave se determina con la posición del puntero.
 
 ## Video
-  - https://youtube.com/(TODO)
+  - https://youtu.be/uVoxzspvwgc
