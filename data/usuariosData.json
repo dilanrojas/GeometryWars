@@ -298,5 +298,20 @@
         "ID": 20,
         "nombre": "Diego",
         "nivel": 3
+    },
+    {
+        "configuraciones": {
+            "vidas": 3,
+            "arma": 1,
+            "velocidad": 1,
+            "dificultad": 1
+        },
+        "puntaje": 5,
+        "tiempoJugado": 7,
+        "nickname": "daniel20",
+        "contrasena": "drv2010",
+        "ID": 21,
+        "nombre": "Daniel",
+        "nivel": 1
     }
 ]}
